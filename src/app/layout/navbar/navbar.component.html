@@ -1,6 +1,24 @@
-<div class="navbar fixed top-0 w-4/5 bg-white h-16">
-    
-    <p>navbar works!</p>
-
+<div class="navbar flex items-center fixed top-0 left-0 w-4/5 bg-white h-16 overflow-hidden">
+    <div class="wrapper-hamburger h-full flex items-center px-10">
+        <i class="pi pi-bars text-2xl"></i>
+    </div>
+    <div class="setting-menu flex items-center mr-auto ml-10">
+        <i class="pi pi-bell text-2xl ml-5" pBadge value="2"></i>
+        <button class="flex items-center" (click)="op.show($event)">
+            <span class="email ml-2 text-base">sariah</span>
+            <p-avatar 
+                image="./../../assets/images/avatar.jpg" 
+                shape="circle"
+                class="mt-2">
+            </p-avatar>
+            <p-overlayPanel #op>
+                <ul class="lists px-2">
+                    <li class="list-items my-2 flex items-center" *ngFor="let item of setting">
+                        <i class="py-2 text-sm" [ngClass]="item.icon"></i>
+                        <span class="label text-sm p-2 pr-4">{{item.label}}</span>
+                    </li>
+                </ul>
+            </p-overlayPanel>
+        </button>
+    </div>
 </div>
-<!--  -->
