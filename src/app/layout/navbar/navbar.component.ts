@@ -16,9 +16,10 @@ import { Setting } from 'src/app/interfaces/setting.interface';
 export class NavbarComponent implements OnInit {
 
   setting: Setting[];
+  showSlidebar = true;
 
   constructor() {}
-  
+
   ngOnInit(): void {
     this.setting = [
       { label: 'پروفایل', icon: 'pi pi-user' },
@@ -27,5 +28,8 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  toggleSidebar() {
+    this.showSlidebar = !this.showSlidebar;
+  }
 
 }
