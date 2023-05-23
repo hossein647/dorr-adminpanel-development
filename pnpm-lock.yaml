@@ -25,6 +25,9 @@ dependencies:
   '@angular/router':
     specifier: ^16.0.0
     version: 16.0.0(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/platform-browser@16.0.0)(rxjs@7.8.0)
+  primeicons:
+    specifier: ^6.0.1
+    version: 6.0.1
   primeng:
     specifier: 16.0.0-rc.2
     version: 16.0.0-rc.2(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/forms@16.0.0)(rxjs@7.8.0)(zone.js@0.13.0)
@@ -5740,6 +5743,10 @@ packages:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
     dev: true
+
+  /primeicons@6.0.1:
+    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+    dev: false
 
   /primeng@16.0.0-rc.2(@angular/common@16.0.0)(@angular/core@16.0.0)(@angular/forms@16.0.0)(rxjs@7.8.0)(zone.js@0.13.0):
     resolution: {integrity: sha512-jJr7cQ+s4fSlyuFK6sHIcRVnRvA1oEDzMW56ybm2tC2HXuozOkLF06eYqk7xwgbyD7vyyQIHjmPd8f2VcH89VA==}
