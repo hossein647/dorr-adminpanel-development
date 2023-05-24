@@ -18,4 +18,9 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should setting property created', () => {
+    expect(component.setting).toBeDefined();
+    expect(component.setting).toBeInstanceOf(Array);
+  })
 });
