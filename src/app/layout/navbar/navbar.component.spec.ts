@@ -19,8 +19,8 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should setting property created', () => {
+  it('should initialize the setting and showSidebar properties', () => {
     expect(component.setting).toBeDefined();
-    expect(component.setting).toBeInstanceOf(Array);
+    expect(component.showSidebar).toBeDefined();
   })
 });
