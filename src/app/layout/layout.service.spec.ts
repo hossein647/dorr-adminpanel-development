@@ -13,4 +13,8 @@ describe('LayoutService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  
+  it('#showSidebar property should be created', () => {
+    expect(service.showSidebar()).toBe(true);
+  });
 });
