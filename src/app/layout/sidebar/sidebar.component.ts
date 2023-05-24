@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+
+  showSidebar: boolean;
+
+  constructor(
+    private layoutService: LayoutService,
+  ) {
+    effect(() => {
+      this.showSidebar = this.layoutService.showSidebar();
+    })
+  }
+
+
+  ngOnInit(): void {}
 
 }
