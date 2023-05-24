@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/module';
 import { AvatarModule } from 'primeng/avatar'
 import { BadgeModule } from 'primeng/badge';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { Setting } from 'src/app/interfaces/setting.interface';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,11 +17,14 @@ import { Setting } from 'src/app/interfaces/setting.interface';
 export class NavbarComponent implements OnInit {
 
   setting: Setting[];
-  showSlidebar = true;
+  showSidebar: boolean;
 
-  constructor() {}
+  constructor(
+    private layoutService: LayoutService,
+  ) {}
 
   ngOnInit(): void {
+    this.showSidebar = this.layoutService.showSidebar();
     this.setting = [
       { label: 'پروفایل', icon: 'pi pi-user' },
       { label: 'خروج', icon: 'pi pi-power-off' },
@@ -29,7 +33,8 @@ export class NavbarComponent implements OnInit {
 
 
   toggleSidebar() {
-    this.showSlidebar = !this.showSlidebar;
+    this.layoutService.showSidebar.set(!this.showSidebar);
+    this.showSidebar = this.layoutService.showSidebar()
   }
 
 }
