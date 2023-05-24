@@ -1,9 +1,14 @@
-<div class="navbar flex items-center fixed top-0 left-0 w-4/5 bg-white h-16 overflow-hidden">
+<div 
+    class="navbar flex items-center fixed top-0 left-0 w-4/5 bg-white h-16 overflow-hidden transition-all duration-300"
+    [ngClass]="{'w-full': !showSidebar}">
     <div class="wrapper-hamburger h-full flex items-center px-10">
-        <i class="pi pi-bars text-2xl" (click)="toggleSidebar()"></i>
+        <i 
+            class="pi pi-bars hover:cursor-pointer hover:scale-x-110 transition-all"  
+            style="font-size: 1.5rem" (click)="toggleSidebar()">
+        </i>
     </div>
     <div class="setting-menu flex items-center mr-auto ml-10">
-        <i class="pi pi-bell text-2xl ml-5" pBadge value="2"></i>
+        <i class="pi pi-bell ml-5 hover:cursor-pointer" style="font-size: 1.5rem;" pBadge value="2"></i>
         <button class="flex items-center" (click)="op.show($event)">
             <span class="email ml-2 text-base">sariah</span>
             <p-avatar 
