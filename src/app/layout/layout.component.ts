@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainContentComponent } from './main-content/main-content.component';
+import { LayoutService } from './layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +14,14 @@ import { MainContentComponent } from './main-content/main-content.component';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() {}
+  showSidebar = true;
+  constructor(
+    private layoutService: LayoutService,
+  ) {
+    effect(() => {
+      this.showSidebar = this.layoutService.showSidebar();
+    })
+  }
 
   ngOnInit() {}
 }
