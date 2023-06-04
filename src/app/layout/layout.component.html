@@ -5,7 +5,9 @@
     <div class="layout-sidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="layout-main-content h-full mr-[270px] pt-20">
+    <div 
+        class="layout-main-content h-full p-20 transition-all duration-300" 
+        [ngClass]="{'mr-[270px] pt-20': showSidebar }">
         <app-main-content></app-main-content>
     </div>
 </div>
