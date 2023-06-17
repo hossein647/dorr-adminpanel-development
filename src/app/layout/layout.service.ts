@@ -1,4 +1,4 @@
-import { Injectable, Signal, effect, signal } from '@angular/core';
+import { Injectable, Signal, WritableSignal, effect, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -10,4 +10,16 @@ export class LayoutService {
   constructor() { 
   }
 
+}
+
+
+
+
+
+
+
+
+export class MockLayoutService implements LayoutService {
+  
+  showSidebar: WritableSignal<boolean> = signal(true);
 }
