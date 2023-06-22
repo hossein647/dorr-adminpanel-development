@@ -6,6 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *::after, *::before {
+body, html {
     direction: rtl;
 }
