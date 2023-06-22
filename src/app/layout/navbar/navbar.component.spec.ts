@@ -17,7 +17,8 @@ describe('NavbarComponent', () => {
     });
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    layoutService = TestBed.inject(LayoutService)
+    layoutService = TestBed.inject(LayoutService);
+    const { debugElement } = fixture;
     fixture.detectChanges();
   });
 
