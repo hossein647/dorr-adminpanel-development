@@ -16,10 +16,10 @@ export class NewPostService {
   ) { }
 
 
-  create<Post>(data: Post): Observable<Post> {
-    return this.genericHttp.post(`${this.baseApi}/create`, data);
+  create<Post>(post: Post): Observable<Post> {
+    return this.genericHttp.post(`${this.baseApi}/create`, post);
   }
 
 
-  
+
 }
