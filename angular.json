@@ -51,7 +51,12 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/vazirmatn/Vazirmatn-font-face.css"
             ],
-            "scripts": []
+            "scripts": [
+            ],
+            "allowedCommonJsDependencies": [
+              "tinymce",
+              "prismjs"
+            ]
           },
           "configurations": {
             "production": {

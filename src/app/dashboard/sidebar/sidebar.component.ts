@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { DashboardService } from '../dashboard.service';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
+
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MenuModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
 
   showSidebar: boolean;
-  menuItem: MenuItem[];
+  menuItems: MenuItem[];
   selected: string = '';
 
   constructor(
@@ -25,14 +27,16 @@ export class SidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.menuItem = this.renderMenuItem();
+    this.menuItems = this.renderMenuItems();
     this.getSelectedMenu();
   }
 
 
-  renderMenuItem(): MenuItem[] {
+  renderMenuItems(): MenuItem[] {
     return [
-      { label: 'پست جدید', icon: PrimeIcons.PLUS, routerLink: 'new-post'}
+        { label: 'مقالات', icon: PrimeIcons.BOOK, routerLink: 'articles'},
+        { label: 'دسته بندی ها', icon: PrimeIcons.BOX, routerLink: 'categories'},
+        // { label: 'تگ ها', icon: PrimeIcons.TAGS, routerLink: 'tags'}
     ]
   }
 

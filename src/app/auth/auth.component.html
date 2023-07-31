@@ -1,0 +1,40 @@
+<div class="auth min-h-screen bg-[#eff3f875] flex items-center justify-center">
+    <div class="
+                overlay absolute w-full h-full shadow-md bg-black top-0 left-0 right-0 
+                opacity-60 rounded-md">
+    </div>
+    <div class="lg:w-1/3 bg-white p-8 shadow-md rounded-md badki card-auth relative">
+        <form 
+                [formGroup]="authForm" 
+                class="relative">
+            <h1 class="title text-4xl text-center font-medium mt-8 mb-16">
+                {{formTitle}}
+            </h1>
+            <div class="email mb-8">
+                <input 
+                        formControlName="email" 
+                        type="text" 
+                        class="w-full p-inputtext-sm" 
+                        placeholder="ایمیل" 
+                        pInputText>
+            </div>
+            <div class="password mb-8">
+                <input 
+                        formControlName="password" 
+                        type="password" 
+                        class="w-full p-inputtext-sm" 
+                        placeholder="رمز عبور"
+                        pInputText>
+            </div>
+            <div class="sumbit flex justify-center mt-16">
+                <app-button 
+                            [label]="label" 
+                            classList="p-button-success" 
+                            [disabled]="!authForm.valid"
+                            (clickListener)="formTitle === 'صفحه ورود' ? login(authForm) : register(authForm)">
+                </app-button>
+            </div>
+        </form>
+    </div>
+</div>
+<p-toast position="bottom-left"></p-toast>

@@ -1,0 +1,155 @@
+<form 
+        class="new-post p-card p-8 flex !shadow-none" 
+        [formGroup]="articleForm">
+    <div class="main w-3/4 p-2">
+        <div class="wrapper-title mb-3">
+            <input 
+                    type="text" 
+                    pInputText 
+                    class="p-inputtext-sm w-full" 
+                    placeholder="عنوان"
+                    formControlName="title"
+                    [ngClass]="{'ng-invalid ng-dirty': isEmpty('title')}">
+            <small 
+                    class="error-title text-red-400 font-medium mt-2 w-full text-right" 
+                    *ngIf="isEmpty('title')">
+                    عنوانی وارد کنید
+            </small>
+        </div>
+        <div class="select-image mb-3 relative">
+            <p-fileUpload 
+                            mode="basic"
+                            formControlName="imageUrl"
+                            ngDefaultControl
+                            accept="image/*" 
+                            (onSelect)="onSelectImage($event)"
+                            chooseLabel="انتخاب تصویر"
+                            #fileUpload>
+            </p-fileUpload>
+            <small 
+                    class="error-image text-red-400 font-medium mt-2 w-full text-right" 
+                    *ngIf="invalidImageSelected">
+                تصویری را انتخاب کنید
+            </small>
+            <div 
+                class="clear absolute bg-blue-400 -top-1 -right-1 rounded-full flex p-2"
+                (click)="onClearSelectImage()"
+                *ngIf="showCancelSelectImage">
+                <i class="pi pi-times w-4 h-4 flex items-center justify-center text-white"></i>
+            </div>
+        </div>
+        <editor
+                formControlName="content"
+                (onGetContent)="onGetContentTinyEditor($event)"
+                [init]="{
+                    base_url: '/tinymce',
+                    codesample_global_prismjs: true,
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    toolbar1: 'undo redo | bold italic underline strikethrough | fontfamily fontsizeinput blocks',
+                    toolbar2: 'alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    codesample_languages: [
+                        { text: 'HTML/XML', value: 'markup' },
+                        { text: 'JavaScript', value: 'javascript' },
+                        { text: 'CSS', value: 'css' },
+                        { text: 'TypeScript', value: 'typescript' },
+                    ],
+                    font_size_formats: '8px 9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 24px 30px 36px 48px 60px 72px 96px',
+                    content_style: 'body { direction: rtl; font-size: 18px; line-hight: 1.8; }'
+                }"
+                #tinymce>
+
+        </editor>
+        <small 
+                class="error-content text-red-400 font-medium mt-2 w-full text-right" 
+                *ngIf="isEmpty('content')">
+            محتوایی وارد کنید
+        </small>
+    </div>
+    <div class="side w-1/4 p-2 relative">
+        <div class="p-card border !shadow-none mb-5">
+            <h1 class="text-xl py-2 px-4 border-b">انتشار</h1>
+            <div class="status flex p-4 justify-between">
+                <span class="status-title flex items-center">وضعیت : </span>
+                <p-inputSwitch 
+                                formControlName="status" 
+                                class="p-inputtext-sm flex items-center">
+                </p-inputSwitch>
+            </div>
+        </div>
+        <div class="p-card border !shadow-none mb-5">
+            <h1 class="text-xl py-2 px-4 border-b">تگ ها</h1>
+            <div class="tags flex p-4 justify-between flex-wrap">
+                <div class="add-tag flex">
+                    <i 
+                        class="pi pi-plus flex items-center justify-center border border-l-0 rounded-r-md p-2"
+                        (click)="addTag($event, newTagInput)">
+                    </i>
+                    <input 
+                            type="text" 
+                            class="p-inputtext-sm !rounded-r-none"
+                            [ngClass]="{'ng-invalid ng-dirty': isEmpty('tags')}"
+                            formControlName="tags"
+                            pInputText 
+                            placeholder="تگ"
+                            (keydown)="addTag($event, newTagInput)"
+                            #newTagInput>
+                </div>
+                <ng-container *ngFor="let tag of tags; let i = index">
+                    <p-chip 
+                            [removable]="true"
+                            class="p-2"
+                            (onRemove)="removeTag(tags, i)">
+                                <div class="content py-1 px-2">{{tag}}</div>
+                    </p-chip>
+                </ng-container>
+                <small 
+                        class="error-tags text-red-400 font-medium mt-2 w-full text-right" 
+                        *ngIf="isEmpty('tags')">
+                    تگ اضافه کنید
+                </small>
+            </div>
+        </div>
+        <div class="p-card border !shadow-none mb-5">
+            <h1 class="text-xl py-2 px-4 border-b">دسته بندی</h1>
+            <div class="category p-4">
+                <p-dropdown 
+                            [options]="categories" 
+                            formControlName="category"
+                            optionLabel="name"
+                            optionValue="name"
+                            placeholder="انتخاب">
+                </p-dropdown>
+                <small 
+                        class="error-category text-red-400 font-medium mt-2 w-full text-right" 
+                        *ngIf="isEmpty('category')">
+                        دسته انتخاب کنید
+                </small>
+            </div>
+        </div>
+        <div class="share absolute bottom-2 w-full flex justify-between">
+            <button 
+                    class="p-button-sm p-button-success w-[48%] flex items-center" 
+                    pButton 
+                    label="انتشار" 
+                    icon="pi pi-check"
+                    (click)="articleId ? updateArticle() : saveArticle(fileUpload)"
+                    [disabled]="!articleForm.valid || !fileUpload.files.length">
+            </button>
+            <button 
+                    class="p-button-sm p-button-danger w-[48%] flex items-center" 
+                    pButton 
+                    label="انصراف" 
+                    icon="pi pi-times"
+                    (click)="cancel()">
+            </button>
+        </div>
+    </div>
+</form>
+<p-toast position="bottom-left"></p-toast>
+<p-blockUI [blocked]="blockedPage" styleClass="!bg-[#0000001f]">
+    <p-progressSpinner 
+                        styleClass="w-4rem h-4rem" 
+                        strokeWidth="8"
+                        animationDuration=".5s">
+    </p-progressSpinner>
+</p-blockUI>

@@ -11,15 +11,3 @@ export class DashboardService {
   }
 
 }
-
-
-
-
-
-
-
-
-export class MockLayoutService implements DashboardService {
-  
-  showSidebar: WritableSignal<boolean> = signal(true);
-}

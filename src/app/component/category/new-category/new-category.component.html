@@ -1,0 +1,11 @@
+<app-form
+            [title]="title"
+            placeholder="نام دسته بندی"
+            classList="p-button-success"
+            [labelSubmit]="labelSubmit"
+            errorMessage="نام برای دسته بندی وارد کنید."
+            [form]="categoryName"
+            [invalidForm]="invalidForm()"
+            (onCreate)="makeRequest($event)"
+            (onFormChannge)="changeCategoryName($event)">
+</app-form>

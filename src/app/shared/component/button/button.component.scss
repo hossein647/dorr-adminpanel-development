@@ -1,0 +1,6 @@
+:host ::ng-deep .p-button {
+    padding: .5rem 2.25rem !important;
+    &:focus {
+        box-shadow: none !important;
+    }
+}

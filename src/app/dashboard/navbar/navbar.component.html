@@ -20,6 +20,7 @@
                     <li 
                         class="list-items my-2 pr-2 pl-8 rounded-sm flex items-center hover:cursor-pointer hover:bg-[#e9ecef]" 
                         *ngFor="let item of setting"
+                        (click)="item.method()"
                         >
                         <i class="py-2 text-sm" [ngClass]="item.icon"></i>
                         <span class="label text-sm p-2 pr-4">{{item.label}}</span>
@@ -29,3 +30,4 @@
         </button>
     </div>
 </div>
+<p-toast position="bottom-left"></p-toast>

@@ -1,14 +1,14 @@
-<div  class="sidebar h-full border-l">
+<div  class="sidebar h-full">
     <div class="log-container mt-20"></div>
     <div class="menu-containter">
         <ul class="list">
             <li 
                     class="flex items-center p-5 pr-0 hover:cursor-pointer hover:bg-gray-100" 
                     [ngClass]="{'bg-gray-100': selected === item.routerLink}"
-                    *ngFor="let item of menuItem; let i = index;"
+                    *ngFor="let item of menuItems; let i = index;"
                     (click)="goToPage(item)">
-                <i class="mr-5 !text-lg font-semibold" [ngClass]="item.icon"></i>
-                <span class="label mr-5 text-lg font-semibold">{{item.label}}</span>
+                <i class="mr-5 !text-lg font-medium" [ngClass]="item.icon"></i>
+                <span class="label mr-5 text-lg font-medium">{{item.label}}</span>
             </li>
         </ul>
     </div>

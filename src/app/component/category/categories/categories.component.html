@@ -1,0 +1,27 @@
+<div class="wrapper-table p-card p-8">
+    <div class="toolbar mb-2">
+        <app-button 
+                    label="جدید" 
+                    classList="p-button-success" 
+                    (clickListener)="navigateToNewRoute()">
+        </app-button>
+    </div>
+    <app-table-with-paginator   
+                                [value]="value"
+                                [cols]="cols"
+                                (getData)="getCategories(limit, page)"
+                                (onRemoveById)="onRemoveCategory($event)"
+                                (onEditById)="navigateToEditRoute($event)"
+                                (onChangePage)="onChangePage($event)"
+                                [showPaginator]="true"
+                                [showRemoveIcon]="true"
+                                [showEditIcon]="true"
+                                [limit]="limit"
+                                [page]="page"
+                                [totalDocs]="totalDocs"
+                                [totalPages]="totalPages"
+                                [rowsPerPageOptions]="[8, 15, 25, 50, 100]"
+                                hedearConfirm="آیا از حذف مطمئن هستید؟"
+                                classList="p-button-success">
+    </app-table-with-paginator>
+</div>
