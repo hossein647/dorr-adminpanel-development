@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { GenericHttp } from '../shared/services/generic-http.service';
 import { User } from '../shared/interfaces/user.interface';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(
     private genericHttp: GenericHttp,
-  ) { }
+  ) {}
 
 
 
