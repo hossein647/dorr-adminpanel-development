@@ -132,6 +132,7 @@
                     pButton 
                     label="انتشار" 
                     icon="pi pi-check"
+                    type="submit"
                     (click)="articleId ? updateArticle() : saveArticle(fileUpload)"
                     [disabled]="!articleForm.valid || !fileUpload.files.length">
             </button>
@@ -140,6 +141,7 @@
                     pButton 
                     label="انصراف" 
                     icon="pi pi-times"
+                    type="button"
                     (click)="cancel()">
             </button>
         </div>
