@@ -59,8 +59,8 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
   invalidImageSelected: boolean = false;
   articleForm: FormGroup;
   tinymceParent: HTMLDivElement;
-  @ViewChild('fileUpload') fileUpload: FileUpload;
   categoryController: AbstractControl;
+  @ViewChild('fileUpload') fileUpload: FileUpload;
   
 
   constructor(
@@ -96,13 +96,13 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {    
     this.initilaizeArticleForm();    
     this.getCategories()
-    const { _id: id, title, content, category, status, tags, imageUrl } = history.state;
+    const { _id: id, title, alias, content, category, status, tags, imageUrl } = history.state;
     this.articleId = id;    
 
     // edit route
     if (this.articleId) {
       const statusState = status === 'منتشر شده' ? true : false;
-      this.articleForm.patchValue({ id, title, content, status: statusState, category: category.name });
+      this.articleForm.patchValue({ id, title, alias, content, status: statusState, category: category.name });
       this.tags = tags;
       this.articleForm.controls['tags'].clearValidators();
       this.imageUrl = imageUrl;
@@ -116,6 +116,7 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
   initilaizeArticleForm() {    
     this.articleForm = this.formBuilder.group({
       title: ['', Validators.required],
+      alias: ['', Validators.required],
       imageUrl: [''],
       content: ['', Validators.required],
       status: [false],
