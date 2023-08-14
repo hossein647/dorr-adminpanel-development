@@ -16,6 +16,20 @@
                     عنوانی وارد کنید
             </small>
         </div>
+        <div class="wrapper-alias mb-3">
+            <input 
+                    type="text" 
+                    pInputText 
+                    class="p-inputtext-sm w-full" 
+                    placeholder="مستعار"
+                    formControlName="alias"
+                    [ngClass]="{'ng-invalid ng-dirty': isEmpty('alias')}">
+            <small 
+                    class="error-alias text-red-400 font-medium mt-2 w-full text-right" 
+                    *ngIf="isEmpty('alias')">
+                    یک عنوان مستعار وارد کنید
+            </small>
+        </div>
         <div class="select-image mb-3 relative">
             <p-fileUpload 
                             mode="basic"
