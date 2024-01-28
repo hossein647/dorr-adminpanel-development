@@ -18,6 +18,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BlockUIModule } from 'primeng/blockui';
 import { Publication } from 'src/app/shared/interfaces/publication.interface';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-new-post',
@@ -98,7 +99,7 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
     this.getCategories()
     const { _id: id, title, alias, content, category, status, tags, imageUrl } = history.state;
     this.articleId = id;    
-
+    
     // edit route
     if (this.articleId) {
       const statusState = status === 'منتشر شده' ? true : false;
@@ -247,15 +248,33 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
   
   updateArticle() {
     this.blockedPage = true;
-    const article: Article = this.getDataArticle(this.imageUrl);
+    const newImage = this.articleForm.controls['imageUrl'].value;
+    let article: Article = this.getDataArticle(this.imageUrl);
+    const keyFile = article.imageUrl?.slice(42) || '';
+    
+    // check if current image(file) exist in liara
+    this.articleService.getSpeceficFile(keyFile).subscribe({
+      next: async (res: any) => {        
+        try {
+          // if not exist
+            if (res.data?.code === "NoSuchKey") {
+            const uploadedNewImage = await firstValueFrom(this.articleService.uploadImage(newImage));
+            article = { ...article, imageUrl: uploadedNewImage.data?.imageUrl }
+            }
+            // if both exist or not exist, update article
+            const updatedArticle: any = await firstValueFrom(this.articleService.update(this.articleId, article));
 
-    this.articleService.update(this.articleId, article).subscribe({
-      next: (res: any) => {
-        this.blockedPage = false;
-        this.messageService.add({ severity: 'success', summary: res.message });
-        setTimeout(() => {
-          this.router.navigate(['dashboard/articles'])
-        }, 500);
+            this.blockedPage = false;
+            this.messageService.add({ severity: 'success', summary: updatedArticle.message });
+            setTimeout(() => {
+              this.router.navigate(['dashboard/articles'])
+            }, 500);
+
+          } catch (err: any) {
+            this.blockedPage = false;
+            this.messageService.add({ severity: 'error', summary: err.error.message })
+          }
+
       },
       error: (err: any) => {
         this.blockedPage = false;
@@ -292,7 +311,7 @@ export class NewArticleComponent implements OnInit, AfterViewInit {
     const filename = imageUrl.slice(indexSlash + 1);
 
     this.articleService.getDirectImage(imageUrl).subscribe({
-      next: (res: Blob | any) => {        
+      next: (res: Blob | any) => {         
         const file = new File([res], filename);
 
         this.fileUpload.files.push(file);
