@@ -25,8 +25,8 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError(err => {
         return throwError(() => {     
-          const userUnautorized = err.status === 404;
-          const userNotFound = err.status === 401;
+          const userUnautorized = err.status === 404  && err.auth_user === 404;
+          const userNotFound = err.status === 401 && err.auth_user === 401;
           if (err instanceof HttpErrorResponse && (userUnautorized || userNotFound)){
             this.authService.isLoggedIn.update(status => status = false);
             this.authService.setStatusLogin(false)
