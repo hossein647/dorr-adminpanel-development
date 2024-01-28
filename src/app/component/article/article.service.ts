@@ -44,6 +44,12 @@ export class ArticleService {
   remove(id: string) {
     return this.http.delete<Article>(`${this.baseApi}/article/remove/${id}`, { withCredentials: true })
   }
+
+
+  getSpeceficFile(key: string) {
+    const params = new HttpParams().set('key', key);
+    return this.http.get(`${this.baseApi}/article/get`, { params, withCredentials: true });
+  }
   
   
 
