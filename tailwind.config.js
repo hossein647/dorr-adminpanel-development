@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -6,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        "xs": '360px',
-        ...this.theme.screens
+        "xs": '400px',
+        ...defaultTheme.screens
       }
     },
   },
