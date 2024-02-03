@@ -28,8 +28,12 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                loadComponent: () => import('./component/home/home.component').then((c) => c.HomeComponent),
+                loadComponent: () => import('./menu/home/home.component').then((c) => c.HomeComponent),
                 pathMatch: 'full',
+            },
+            {
+                path: 'creator',
+                loadComponent: () => import('./menu/creator/creator.component').then((c) => c.CreatorComponent),
             },
         ]
     },
