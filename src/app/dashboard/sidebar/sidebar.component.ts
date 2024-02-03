@@ -34,8 +34,7 @@ export class SidebarComponent implements OnInit {
 
   renderMenuItems(): MenuItem[] {
     return [
-        { label: 'مقالات', icon: PrimeIcons.BOOK, routerLink: 'articles'},
-        { label: 'دسته بندی ها', icon: PrimeIcons.BOX, routerLink: 'categories'},
+        { label: 'سازنده', iconClass: PrimeIcons.PLUS, routerLink: 'creator'},
         // { label: 'تگ ها', icon: PrimeIcons.TAGS, routerLink: 'tags'}
     ]
   }
