@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.showSidebar = this.dashboardService.showSidebar();
     this.setting = [
+      { label: 'اعلان',    icon: 'pi pi-bell',      method: null },
       { label: 'پروفایل', icon: 'pi pi-user',      method: () => this.profile() },
       { label: 'خروج',    icon: 'pi pi-power-off', method: () => this.logout() },
     ]
