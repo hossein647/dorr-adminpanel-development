@@ -7,9 +7,9 @@
         </i>
     </div>
     <div class="setting-menu flex items-center mr-auto ml-10">
-        <i class="pi pi-bell ml-5 hover:cursor-pointer" style="font-size: 1.5rem;" pBadge value="2"></i>
+        <i class="pi pi-bell ml-5 text-[24px] hover:cursor-pointer" pBadge value="2"></i>
         <button class="flex items-center" (click)="op.show($event)">
-            <span class="email ml-2 text-base">sariah</span>
+            <!-- <span class="email ml-2 text-base">sariah</span> -->
             <p-avatar 
                 image="./../../assets/images/avatar.jpg" 
                 shape="circle"
@@ -18,12 +18,18 @@
             <p-overlayPanel #op>
                 <ul class="lists">
                     <li 
-                        class="list-items my-2 pr-2 pl-8 rounded-sm flex items-center hover:cursor-pointer hover:bg-[#e9ecef]" 
-                        *ngFor="let item of setting"
-                        (click)="item.method()"
+                        class="list-items my-2 pr-2 pl-8 rounded-sm flex items-center hover:cursor-pointer hover:bg-[#e9ecef]"
+                        [ngClass]="{'xs:hidden': i === 0}" 
+                        *ngFor="let item of setting; let i = index"
+                        (click)="item?.method()"
                         >
-                        <i class="py-2 text-sm" [ngClass]="item.icon"></i>
-                        <span class="label text-sm p-2 pr-4">{{item.label}}</span>
+                        <i class="py-2 text-sm" [ngClass]="[item.icon]"></i>
+                        <span class="label text-sm py-2 px-4">{{item.label}}</span>
+                        <i 
+                            class="bell-mobile ml-5 mr-2 text-[12px] hover:cursor-pointer" 
+                            [ngStyle]="{'display' : i !== 0 ? 'none' : 'inline-block'}"
+                            pBadge value="2">
+                        </i>
                     </li>
                 </ul>
             </p-overlayPanel>
