@@ -1,12 +1,12 @@
 <div class="layout-wrapper flex min-h-screen bg-[#eff3f8]">
     <div 
         class="layout-sidebar min-h-full transition-all duration-200 bg-white overflow-hidden border-l" 
-        [ngClass]="{'w-80': showSidebar, 'translate-x-full w-0': !showSidebar}">
+        [ngClass]="{'w-28 xs:w-80': showSidebar, 'translate-x-full w-0': !showSidebar}">
         <app-sidebar></app-sidebar>
     </div>
     <div 
-            class="layout-main h-full transition-all duration-200 w-full">
+        class="layout-main h-full transition-all duration-200 w-full">
         <app-navbar></app-navbar>
-        <app-main-content></app-main-content>
+        <router-outlet></router-outlet>
     </div>
 </div>
