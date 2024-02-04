@@ -1,5 +1,5 @@
 <div 
-    class="navbar flex items-center bg-white h-16 overflow-hidden shadow-md">
+    class="navbar flex items-center bg-white h-16 overflow-hidden shadow-md border-b sm:border-none">
     <div class="wrapper-hamburger h-full flex items-center px-10">
         <i 
             class="pi pi-bars hover:cursor-pointer hover:scale-x-110 transition-all"  
@@ -19,7 +19,7 @@
                 <ul class="lists">
                     <li 
                         class="list-items my-2 pr-2 pl-8 rounded-sm flex items-center hover:cursor-pointer hover:bg-[#e9ecef]"
-                        [ngClass]="{'xs:hidden': i === 0}" 
+                        [ngClass]="{'sm:hidden': i === 0}" 
                         *ngFor="let item of setting; let i = index"
                         (click)="item?.method()"
                         >

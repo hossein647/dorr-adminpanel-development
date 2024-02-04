@@ -5,11 +5,11 @@ import { AvatarModule } from 'primeng/avatar'
 import { BadgeModule } from 'primeng/badge';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { Setting } from 'src/app/shared/interfaces/setting.interface';
-import { DashboardService } from '../dashboard.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Component({
   selector: 'app-navbar',

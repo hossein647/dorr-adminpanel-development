@@ -1,0 +1,54 @@
+<div  class="sidebar h-full">
+    <div class="log-container mt-20"></div>
+    <div class="menu-containter">
+        <ul class="list">
+            <li 
+                class="flex flex-col items-center justify-between"
+                *ngFor="let item of menuItems; let i = index;"
+                >
+                <div 
+                    class="main-item w-full flex items-center justify-between py-5 px-0 sm:pl-5 hover:cursor-pointer hover:bg-gray-100" 
+                    [ngClass]="[ selected === item?.routerLink ? 'gradient-bg' : '']"
+                    (click)="goToPage($event, item)">
+                    <div class="label-wrapper flex items-center w-full">
+                        <i 
+                            class="sm:mr-5 text-[#787878] text-3xl text-center w-full sm:text-right sm:w-auto sm:!text-base font-extrabold" 
+                            [ngClass]="[item.iconClass, selected === item?.routerLink ? 'text-white' : '']">
+                        </i>
+                        <span 
+                            class="label text-[#787878] mr-2 text-base font-extrabold hidden sm:inline-block"
+                            [ngClass]="{'text-white': selected === item?.routerLink}">
+                            {{item.label}}
+                        </span>
+                    </div>
+                    <div class="arrow-wrapper hidden sm:flex" *ngIf="hasChildren(item)">
+                        <i 
+                            class="pi pi-angle-left transition duration-400 text-xl font-extrabold text-[#787878]"
+                            [ngClass]="item.expanded ? '-rotate-90' : 'rotate-0'">
+                        </i>
+                    </div>
+                </div>
+                <div 
+                    class="sub-item w-full" 
+                    *ngIf="item.expanded"
+                    >
+                    <li class="flex items-center justify-between py-5 sm:pr-4 hover:cursor-pointer hover:bg-gray-100"
+                        *ngFor="let subItem of item.items; let j = index;"
+                        [ngClass]="{'gradient-bg ': selected === menuItems[i].items?.[j]?.routerLink}" 
+                        (click)="goToPage($event, subItem)">
+                        <div class="label-wrapper flex items-center w-full">
+                            <i class="sm:mr-5 text-[#787878] text-3xl text-center w-full sm:text-right sm:w-auto sm:!text-base font-extrabold"
+                                [ngClass]="[subItem.iconClass, selected === subItem?.routerLink ? 'text-white' : '']">
+                            </i>
+                            <span 
+                                class="label text-[#787878] mr-2 text-base font-extrabold hidden sm:inline-block"
+                                [ngClass]="selected === subItem?.routerLink ? 'text-white' : ''">
+                                {{subItem.label}}
+                            </span>
+                        </div>
+                    </li>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
