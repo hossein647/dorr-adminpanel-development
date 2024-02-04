@@ -22,7 +22,7 @@ export const routes: Routes = [
     },
     { 
         path: 'dashboard', 
-        loadComponent: () => import('./dashboard/dashboard.component').then((m) => m.DashboardComponent),
+        loadComponent: () => import('./layout/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         canActivate: [authGuard],
         data: [ { route: 'dashboard'}],
         children: [
@@ -32,8 +32,20 @@ export const routes: Routes = [
                 pathMatch: 'full',
             },
             {
-                path: 'creator',
-                loadComponent: () => import('./menu/creator/creator.component').then((c) => c.CreatorComponent),
+                path: 'manage-authors',
+                loadComponent: () => import('./menu/authors/authors.component').then((c) => c.AuthorsComponent),
+            },
+            {
+                path: 'manage-books',
+                loadComponent: () => import('./menu/books/books.component').then((c) => c.BooksComponent),
+            },
+            {
+                path: 'manage-categories',
+                loadComponent: () => import('./menu/categories/categories.component').then((c) => c.CategoriesComponent),
+            },
+            {
+                path: 'manage-users',
+                loadComponent: () => import('./menu/users/users.component').then((c) => c.UsersComponent),
             },
         ]
     },
