@@ -7,12 +7,12 @@ import { AuthService } from './auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom, map } from 'rxjs';
 import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { ToastComponent } from '../shared/component/toast/toast.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule, ButtonComponent, ToastModule],
+  imports: [CommonModule, InputTextModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
   providers: [MessageService],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
