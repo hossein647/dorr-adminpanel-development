@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 
-@layer tailwind-base, primeng, reset, tailwind-utilities;
+@layer tailwind-base, primeng, tailwind-utilities, reset;
 
 
 @layer tailwind-base {
