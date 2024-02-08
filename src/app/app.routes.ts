@@ -37,7 +37,18 @@ export const routes: Routes = [
             },
             {
                 path: 'manage-books',
-                loadComponent: () => import('./menu/books/books.component').then((c) => c.BooksComponent),
+                // loadComponent: () => import('./menu/books/books.component').then((c) => c.BooksComponent),
+                children: [
+                    {
+                        path: '',
+                        loadComponent: () => import('./menu/books/read-book/read-book.component').then((c) => c.ReadBookComponent),
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'create',
+                        loadComponent: () => import('./menu/books/create-book/create-book.component').then((c) => c.CreateBookComponent)
+                    }
+                ]
             },
             {
                 path: 'manage-categories',

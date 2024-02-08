@@ -1,35 +1,32 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgFor, NgIf, NgClass } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { BookData } from 'src/app/shared/interfaces/book-data.interface';
-import { MenuItem } from 'primeng/api/menuitem';
-import { RouterOutlet } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
-
+import { BookData } from 'src/app/shared/interfaces/book-data.interface';
 
 @Component({
-  selector: 'app-books',
+  selector: 'app-create-book',
   standalone: true,
   imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.scss'
+  templateUrl: './create-book.component.html',
+  styleUrl: './create-book.component.scss'
 })
-export class BooksComponent implements OnInit {
-  
+export class CreateBookComponent {
+
   bookForm: FormGroup;
   bookData: BookData;
   loading: boolean = false;
 
 
-  
+
 
 
 
   constructor(
     private foromBuilder: FormBuilder,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initilizeForm();
@@ -40,16 +37,16 @@ export class BooksComponent implements OnInit {
 
   initilizeForm() {
     this.bookForm = this.foromBuilder.group({
-      name:        ['', Validators.required],
-      author:      ['', Validators.required],
-      translator:  ['', Validators.required],
-      category:    ['', Validators.required],
-      volume:      [null, Validators.required],
-      page:        [null, Validators.required],
-      publisher:   ['', Validators.required],
+      name: ['', Validators.required],
+      author: ['', Validators.required],
+      translator: ['', Validators.required],
+      category: ['', Validators.required],
+      volume: [null, Validators.required],
+      page: [null, Validators.required],
+      publisher: ['', Validators.required],
       publish_age: [null, Validators.required],
-      publish_n:   [null, Validators.required],
-      imageUrl:    ['', Validators.required],
+      publish_n: [null, Validators.required],
+      imageUrl: ['', Validators.required],
     })
   }
   submitBook(bookForm: FormGroup) {
@@ -72,7 +69,7 @@ export class BooksComponent implements OnInit {
         formControlName: null
       },
       main: [
-        { 
+        {
           formControlName: 'name',
           placeholder: 'صحیح بخاری',
           class: '',
