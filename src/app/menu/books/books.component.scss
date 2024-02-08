@@ -1,0 +1,35 @@
+input::placeholder {
+    font-size: 11px;
+    color: rgb(115, 124, 136)
+}
+
+// :host ::ng-deep .p-tabview-nav {
+//     @media (max-width: 640px) {
+//         display: block;
+//     }
+    
+    
+//     li {
+//         width: 25%;
+//         @media (max-width: 400px) {
+//            width: 100%;
+//            display: inline-block;
+//         }
+//         @media (min-width: 401px) and (max-width: 640px) {
+//            width: 50%;
+//            display: inline-block;
+//         }
+//     }
+    // .p-highlight {
+    //     .p-tabview-nav-link {
+            
+    //         @media (max-width: 640px) {
+    //         border-radius: 0;
+    //         border-bottom-width: 4px;
+    //         }
+    //     }
+
+    // }
+    // display: flex;
+    // justify-content: center;
+// }
