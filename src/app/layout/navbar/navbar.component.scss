@@ -1,0 +1,13 @@
+.setting-menu > .pi-bell {
+    display: none;
+}
+
+.bell-mobile {
+    line-height: 1.7rem !important;
+}
+
+@media (min-width:640px) {
+    .setting-menu > .pi-bell {
+        display: inline-block;
+    }
+}

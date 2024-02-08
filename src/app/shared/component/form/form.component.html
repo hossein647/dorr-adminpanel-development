@@ -1,0 +1,30 @@
+<div class="new-form p-card py-8 px-28 !shadow-none lg:w-1/2 flex flex-col items-center">
+    <div class="wrapper-title">
+        <h1 class="title text-2xl font-medium mb-12 text-slate-500">{{title}}</h1>
+    </div>
+    <input 
+            type="text" 
+            class="p-inputtext-sm w-full" 
+            name="form" 
+            [placeholder]="placeholder" 
+            pInputText
+            [ngClass]="{'ng-invalid ng-dirty': invalidForm}" 
+            [(ngModel)]="form"
+            (ngModelChange)="onModelChange($event)" 
+            #formRef="ngModel" 
+            required
+            (keyup)="create($event)">
+    <small 
+            class="error text-red-300 font-medium mt-2 w-full text-right" 
+            *ngIf="invalidForm">
+            {{errorMessage}}
+    </small>
+    <div class="btn mt-6">
+        <app-button 
+                    [label]="labelSubmit" 
+                    [classList]="classList" 
+                    (clickListener)="create($event)">
+        </app-button>
+    </div>
+</div>
+<p-toast position="bottom-left"></p-toast>
