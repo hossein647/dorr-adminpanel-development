@@ -52,7 +52,18 @@ export const routes: Routes = [
             },
             {
                 path: 'manage-categories',
-                loadComponent: () => import('./menu/categories/categories.component').then((c) => c.CategoriesComponent),
+                // loadComponent: () => import('./menu/categories/categories.component').then((c) => c.CategoriesComponent),
+                children: [
+                    {
+                        path: '',
+                        loadComponent: () => import('./menu/categories/read-categories/read-categories.component').then((c) => c.ReadCategoriesComponent),
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'create',
+                        loadComponent: () => import('./menu/categories/create-category/create-category.component').then((c) => c.CreateCategoryComponent)
+                    }
+                ]
             },
             {
                 path: 'manage-users',
