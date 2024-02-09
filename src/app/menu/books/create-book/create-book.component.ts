@@ -64,7 +64,7 @@ export class CreateBookComponent {
     return {
       public: {
         type: 'text',
-        class: 'p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 lg:w-3/5 xl:w-1/2 md:block m-1',
+        class: 'p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 md:block m-1',
         directive: 'pInputText',
         formControlName: null
       },
