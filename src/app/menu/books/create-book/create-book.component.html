@@ -1,42 +1,42 @@
-<div class="manage-book p-4 sm:p-16 bg-white md:rounded-md md:border md:shadow-md overflow-hidden">
+<div class="manage-book px-8 pt-24 md:px-0 md:pt-16 bg-white md:rounded-md md:border md:shadow-md overflow-hidden">
     <form class="" [formGroup]="bookForm" (ngSubmit)="submitBook(bookForm)">
         <div class="content">
-            <div class="col p-[2px] sm:p-1 transition-transform duration-1000">
-                <div class="title mr-2 my-3 pl-3 md:flex md:justify-center">
+            <div class="col transition-transform duration-1000">
+                <div class="title mx-1 mb-3 pl-3 md:flex md:justify-center">
                     <h2
-                        class="inline-block md:w-4/5 lg:w-3/5 xl:w-1/2 text-gray-600 text-lg font-extrabold md:border-b-0 p-2 border-r-4 border-red-500">
+                        class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold md:border-b-0 p-2 border-r-4 border-red-500">
                         اطلاعات اصلی :</h2>
                 </div>
                 <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let item of bookData.main;">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 lg:w-3/5 xl:w-1/2 text-base text-gray-400"
+                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
                         [for]="item.for">{{item.title}}</label>
                     <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
                         [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
                         [formControlName]="item.formControlName" />
                 </div>
             </div>
-            <div class="col p-[2px] sm:p-1">
+            <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
                     <h2
-                        class="inline-block md:w-4/5 lg:w-3/5 xl:w-1/2 text-gray-600 text-lg font-extrabold p-2 border-r-4 border-red-500">
-                        جزئیات کتاب:</h2>
+                        class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold p-2 border-r-4 border-red-500">
+                        اطلاعات فرعی:</h2>
                 </div>
                 <div class=" md:flex md:flex-col md:items-center" *ngFor="let item of bookData.details">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 lg:w-3/5 xl:w-1/2 text-base text-gray-400"
+                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
                         [for]="item.for">{{item.title}}</label>
                     <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
                         [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
                         [formControlName]="item.formControlName"/>
                 </div>
             </div>
-            <div class="col p-[2px] sm:p-1">
+            <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
                     <h2
-                        class="inline-block md:w-4/5 lg:w-3/5 xl:w-1/2 text-gray-600 text-lg font-extrabold border-r-4 p-2 border-red-500">
+                        class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold border-r-4 p-2 border-red-500">
                         اطلاعات ناشر :</h2>
                 </div>
                 <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let item of bookData.publish">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 lg:w-3/5 xl:w-1/2 text-base text-gray-400"
+                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
                         [for]="item.for">{{item.title}}</label>
                     <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
                         [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
