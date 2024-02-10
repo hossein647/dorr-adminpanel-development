@@ -1,35 +1,32 @@
 input::placeholder {
-    font-size: 11px;
+    font-size: 13px;
     color: rgb(115, 124, 136)
 }
 
-// :host ::ng-deep .p-tabview-nav {
-//     @media (max-width: 640px) {
-//         display: block;
-//     }
+:host ::ng-deep p-dropdown {
 
+    .p-dropdown-filter {
+        margin-right: auto;
+    }
+    .p-dropdown-filter-icon {
+        right: auto;
+        left: .75rem;
+    }
 
-//     li {
-//         width: 25%;
-//         @media (max-width: 400px) {
-//            width: 100%;
-//            display: inline-block;
-//         }
-//         @media (min-width: 401px) and (max-width: 640px) {
-//            width: 50%;
-//            display: inline-block;
-//         }
-//     }
-// .p-highlight {
-//     .p-tabview-nav-link {
+    .p-dropdown-label {
+        padding-right: 0.65625rem;
+    }
 
-//         @media (max-width: 640px) {
-//         border-radius: 0;
-//         border-bottom-width: 4px;
-//         }
-//     }
+    timesicon {
+        border-right: 1px solid #ccc;
+    }
 
-// }
-// display: flex;
-// justify-content: center;
-// }
+    .p-dropdown-clear-icon {
+        right: auto;
+        left: 4rem;
+    }
+
+    .p-placeholder {
+        font-size: 13px;
+    }
+}
