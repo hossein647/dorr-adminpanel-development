@@ -1,27 +1,39 @@
-<div class="create-categories flex justify-center items-center flex-col 
+<div class="create-categories 
             px-8 pt-24 md:px-0 md:pt-16 bg-white md:rounded-md 
-            md:border md:shadow-md overflow-hidden h-full">
-    <form class="w-full">
-        <div class="flex justify-center flex-col items-center flex-column gap-2 w-full ">
+            md:border md:shadow-md overflow-hidden h-screen md:h-auto">
+    <form class="w-full" [formGroup]="categoryForm" (ngSubmit)="submitCategory(categoryForm)">
+        <div class="flex justify-center flex-col items-center flex-column w-full ">
             <label for="username" 
-                   class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400"
-            >نام :</label>
-            <input class="p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 
+                   class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400">
+                   نام :
+            </label>
+            <input 
+                    class="p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 
                           md:block m-1 placeholder:text-[13px] placeholder:text-[#737c88]"
                    pInputText
+                   formControlName="name"
                    placeholder="نام انگلیسی" />
         </div>
-        <div class="flex justify-center flex-col items-center flex-column gap-2 w-full mt-1">
-            <label for="username" 
-                   class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400"
-            >برچسب :</label>
+        <div class="flex justify-center flex-col items-center flex-column w-full mt-2">
+            <label 
+                    for="username" 
+                    class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400">
+                   برچسب :
+            </label>
             <input class="p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 
                           md:block m-1 placeholder:text-[13px] placeholder:text-[#737c88]" 
                    pInputText
+                   formControlName="alias"
                    placeholder="نام فارسی" />
         </div>
-        <div class="submit flex justify-center pb-8 pt-11 px-3 xs:p-8">
-            <p-button styleClass="w-24 px-[6px]" size="small" label="ایجاد">
+        <div class="submit flex justify-center pb-8 pt-11">
+            <p-button 
+                        styleClass="w-24 md:w-32" 
+                        size="small"
+                        [loading]="loading"
+                        [styleClass]="'flex flex-row-reverse px-8'"
+                        (onClick)="submitCategory(categoryForm)"
+                        label="ایجاد">
             </p-button>
         </div>
     </form>
