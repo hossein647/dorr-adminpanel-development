@@ -1,15 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { CreateBookComponent } from '../../books/create-book/create-book.component';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-category',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, CreateBookComponent],
+  imports: [InputTextModule, ButtonModule, ReactiveFormsModule, CommonModule],
   templateUrl: './create-category.component.html',
   styleUrl: './create-category.component.scss'
 })
-export class CreateCategoryComponent {
+export class CreateCategoryComponent implements OnInit {
+  
+  
+  categoryForm: FormGroup;
+  loading: boolean = false;
+  
+  constructor(
+    private foromBuilder: FormBuilder
+  ) {}
 
+
+  ngOnInit(): void {
+    this.initialForm();
+  }
+
+
+  initialForm() {
+    this.categoryForm = this.foromBuilder.group({
+      name: ['', Validators.required],
+      alias: ['', Validators.required],
+    })
+  }
+
+
+
+  submitCategory(categoryForm: FormGroup) {
+    console.log(categoryForm.value);
+    this.loading = true;
+  }
 }
