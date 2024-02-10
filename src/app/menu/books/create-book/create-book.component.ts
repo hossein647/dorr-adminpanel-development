@@ -5,11 +5,13 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { BookData } from 'src/app/shared/interfaces/book-data.interface';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule],
+  imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule, DropdownModule],
   templateUrl: './create-book.component.html',
   styleUrl: './create-book.component.scss'
 })
@@ -18,7 +20,19 @@ export class CreateBookComponent {
   bookForm: FormGroup;
   bookData: BookData;
   loading: boolean = false;
-
+  selectedCountry: string | undefined;
+  countries = [
+    { name: 'Australia', code: 'AU' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'China', code: 'CN' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'India', code: 'IN' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'United States', code: 'US' }
+];
 
 
 
@@ -38,9 +52,9 @@ export class CreateBookComponent {
   initilizeForm() {
     this.bookForm = this.foromBuilder.group({
       name: ['', Validators.required],
-      author: ['', Validators.required],
-      translator: ['', Validators.required],
-      category: ['', Validators.required],
+      author: [this.selectedCountry, Validators.required],
+      translator: [this.selectedCountry, Validators.required],
+      category: [this.selectedCountry, Validators.required],
       volume: [null, Validators.required],
       page: [null, Validators.required],
       publisher: ['', Validators.required],
@@ -80,18 +94,18 @@ export class CreateBookComponent {
         },
         {
           formControlName: 'author',
-          placeholder: 'محمد بن اسماعیل بخاری',
+          placeholder: 'انتخاب نویسنده',
           class: '',
-          ngClass: '',
+          ngClass: 'w-full',
           for: 'author',
           id: 'author',
           title: 'مولف :'
         },
         {
           formControlName: 'translator',
-          placeholder: 'محمد هروی',
+          placeholder: 'انتخاب مترجم',
           class: '',
-          ngClass: '',
+          ngClass: 'w-full',
           for: 'translator',
           id: 'translator',
           title: 'مترجم :'
@@ -100,7 +114,7 @@ export class CreateBookComponent {
       details: [
         {
           formControlName: 'category',
-          placeholder: 'حدیث',
+          placeholder: 'انتخاب دسته بندی',
           class: '',
           ngClass: '',
           for: 'category',
