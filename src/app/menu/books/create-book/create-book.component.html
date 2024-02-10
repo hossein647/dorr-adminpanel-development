@@ -5,52 +5,134 @@
                 <div class="title mx-1 mb-3 pl-3 md:flex md:justify-center">
                     <h2
                         class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold md:border-b-0 p-2 border-r-4 border-red-500">
-                        اطلاعات اصلی :</h2>
+                        اطلاعات اصلی :
+                    </h2>
                 </div>
-                <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let item of bookData.main;">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
-                        [for]="item.for">{{item.title}}</label>
-                    <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
-                        [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
-                        [formControlName]="item.formControlName" />
+                <div class="w-full md:flex md:flex-col md:items-center">
+                    <label 
+                            class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
+                            [for]="bookData.main[0].for">
+                            {{bookData.main[0].title}}
+                    </label>
+                    <input 
+                            [id]="bookData.main[0].id" 
+                            [type]="bookData.main[0].type || bookData.public.type" 
+                            [class]="bookData.public.class"
+                            [ngClass]="[bookData.main[0].ngClass]" 
+                            [placeholder]="bookData.main[0].placeholder"
+                            [formControlName]="bookData.main[0].formControlName"
+                    />
+                </div>
+                <div 
+                    class="w-full md:flex md:flex-col md:items-center" 
+                    *ngFor="let item of [bookData.main[1], bookData.main[2]]">
+                    <label 
+                            class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
+                            [for]="item.for">
+                            {{item.title}}
+                    </label>
+                    <p-dropdown 
+                                [options]="countries"
+                                [formControlName]="item.formControlName"
+                                optionLabel="name" 
+                                [filter]="true" 
+                                filterBy="name"
+                                [showClear]="true"
+                                styleClass="w-full p-inputtext-sm"
+                                class="w-full md:w-4/5 mt-1"
+                                [placeholder]="item.placeholder">
+                        <ng-template pTemplate="selectedItem" let-selectedOption>
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ selectedOption.name }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ country.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
                 </div>
             </div>
             <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
                     <h2
                         class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold p-2 border-r-4 border-red-500">
-                        اطلاعات فرعی:</h2>
+                        اطلاعات فرعی:
+                    </h2>
                 </div>
-                <div class=" md:flex md:flex-col md:items-center" *ngFor="let item of bookData.details">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
+                <div class="w-full md:flex md:flex-col md:items-center">
+                    <label 
+                            class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" 
+                            [for]="bookData.details[0].for">
+                            {{bookData.details[0].title}}
+                    </label>
+                    <p-dropdown [options]="countries"
+                                [formControlName]="bookData.details[0].formControlName"
+                                optionLabel="name"
+                                [filter]="true"
+                                filterBy="name" 
+                                [showClear]="true" 
+                                styleClass="w-full p-inputtext-sm" 
+                                class="w-full md:w-4/5 mt-1" 
+                                [placeholder]="bookData.details[0].placeholder">
+                        <ng-template pTemplate="selectedItem" let-selectedOption>
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ selectedOption.name }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ country.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div 
+                    class="md:flex md:flex-col md:items-center" 
+                    *ngFor="let item of [bookData.details[1], bookData.details[2], bookData.details[3]]">
+                    <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
                         [for]="item.for">{{item.title}}</label>
-                    <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
-                        [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
-                        [formControlName]="item.formControlName"/>
+                    <input 
+                            [id]="item.id" 
+                            [type]="item.type || bookData.public.type" 
+                            [class]="bookData.public.class"
+                            [ngClass]="[item.ngClass]" 
+                            [placeholder]="item.placeholder"
+                            [formControlName]="item.formControlName"/>
                 </div>
             </div>
             <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
                     <h2
                         class="inline-block md:w-4/5 text-gray-600 text-lg font-extrabold border-r-4 p-2 border-red-500">
-                        اطلاعات ناشر :</h2>
+                        اطلاعات ناشر :
+                    </h2>
                 </div>
                 <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let item of bookData.publish">
-                    <label class="inline-block mr-1 mt-2 md:w-4/5 text-base text-gray-400"
-                        [for]="item.for">{{item.title}}</label>
-                    <input [id]="item.id" [type]="item.type || bookData.public.type" [class]="bookData.public.class"
-                        [ngClass]="[item.ngClass]" [placeholder]="item.placeholder"
-                        [formControlName]="item.formControlName" />
+                    <label 
+                            class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
+                            [for]="item.for">
+                            {{item.title}}
+                    </label>
+                    <input 
+                            [id]="item.id" 
+                            [type]="item.type || bookData.public.type" 
+                            [class]="bookData.public.class"
+                            [ngClass]="[item.ngClass]" 
+                            [placeholder]="item.placeholder"
+                            [formControlName]="item.formControlName"
+                    />
                 </div>
             </div>
         </div>
         <div class="submit flex justify-center p-8 pt-0">
-            <button pButton class="w-60" label="Submit" [loading]="loading" (click)="loadSubmit()">
+            <button 
+                    pButton class="w-60" 
+                    label="Submit" 
+                    [loading]="loading" 
+                    (click)="loadSubmit()">
             </button>
         </div>
     </form>
-</div>
-
-<div class="card">
-
 </div>
