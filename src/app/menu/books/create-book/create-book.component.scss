@@ -4,7 +4,9 @@ input::placeholder {
 }
 
 :host ::ng-deep p-dropdown {
-
+    .p-dropdown {
+        margin-top: .25rem;
+    }
     .p-dropdown-filter {
         margin-right: auto;
     }
