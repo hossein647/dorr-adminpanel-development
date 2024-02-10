@@ -125,7 +125,7 @@ export class CreateBookComponent {
           formControlName: 'page',
           placeholder: '600',
           class: '',
-          ngClass: 'mb-[2px] sm:m-1',
+          ngClass: '',
           for: 'page',
           id: 'page',
           title: 'صفحات :'
@@ -134,7 +134,7 @@ export class CreateBookComponent {
           formControlName: 'volume',
           placeholder: '4',
           class: '',
-          ngClass: 'mt-[2px] sm:m-1',
+          ngClass: '',
           for: 'volume',
           id: 'volume',
           title: 'تعداد جلد :'
