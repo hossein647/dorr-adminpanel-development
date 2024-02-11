@@ -81,9 +81,7 @@ export class SidebarComponent implements OnInit {
 
 
   goToPage(event: any, item: MenuItem) {
-    event?.stopPropagation()
-    console.log(this.selected, item.routerLink);
-    
+    event?.stopPropagation()    
     if (this.hasChildren(item)) item.expanded = !item.expanded;
     else {      
       this.rotuer.navigate([item.routerLink], { relativeTo: this.activatedRoute });
@@ -96,11 +94,13 @@ export class SidebarComponent implements OnInit {
     return 'expanded' in item;
   }
 
+
   getSelectedMenu() {
-    console.log(this.rotuer.url);
     if (this.rotuer.url === '/dashboard') this.selected = '/dashboard';
-    else this.selected = this.rotuer.url.slice(11);
-     
+    else if (this.rotuer.url.includes('manage-books')) this.selected = 'manage-books';
+    else if (this.rotuer.url.includes('manage-authors')) this.selected = 'manage-authors';
+    else if (this.rotuer.url.includes('manage-catergories')) this.selected = 'manage-catergories';
+    else if (this.rotuer.url.includes('manage-users')) this.selected = 'manage-users';
   }
 
 
@@ -108,8 +108,6 @@ export class SidebarComponent implements OnInit {
     this.rotuer.events.subscribe({
       next: (event) => {
         if (event instanceof NavigationEnd) {
-          console.log(event);
-          
           this.getSelectedMenu();
         }
       }
