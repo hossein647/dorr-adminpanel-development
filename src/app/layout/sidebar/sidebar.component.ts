@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardService } from '../dashboard/dashboard.service';
@@ -18,20 +18,19 @@ export class SidebarComponent implements OnInit {
 
   showSidebar: boolean;
   menuItems: MenuItem[];
-  selected: string = '';
 
   constructor(
     private dashboard: DashboardService,
     private rotuer: Router,
     private activatedRoute: ActivatedRoute,
-  ) {
-    this.getRoutefreshPage();
-  }
-
-
+  ) {}
+  
   ngOnInit(): void {
     this.menuItems = this.renderMenuItems();
-    // this.getSelectedMenu();
+    const mainRoute = this.extractMainRoute(this.rotuer.url)
+    
+    this.checkExpandedMenu(mainRoute);
+    
   }
 
 
@@ -85,7 +84,6 @@ export class SidebarComponent implements OnInit {
     if (this.hasChildren(item)) item.expanded = !item.expanded;
     else {      
       this.rotuer.navigate([item.routerLink], { relativeTo: this.activatedRoute });
-      this.selected = item.routerLink;
     }
   }
 
@@ -95,36 +93,27 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  getSelectedMenu(childRoute: string) {
-    const routeSelected: boolean = this.rotuer.url.includes(childRoute);
 
-    if (this.rotuer.url === '/dashboard') this.selected = '/dashboard';
-    else if (routeSelected) this.selected = childRoute;
-  }
-
-
-  getRoutefreshPage() {
-    this.rotuer.events.subscribe({
-      next: (event) => {
-        if (event instanceof NavigationEnd) {
-          const childRoute = this.extractChildRoute(event.urlAfterRedirects);
-          this.getSelectedMenu(childRoute);
-        }
+  checkExpandedMenu(routeUrl: string) {
+    this.menuItems.forEach((item: MenuItem) => {
+      if (item.items?.length) {
+        const result = item.items.filter((item: MenuItem) => {
+          return item.routerLink === routeUrl 
+        });
+        if (result[0]?.id) item.expanded = true;
       }
     })
   }
 
 
-
-
-  extractChildRoute(routeUrl: string) {
-    const secondSlashIndex = routeUrl.indexOf('/', routeUrl.indexOf('/') + 1);
-    const thirdSlashIndex = routeUrl.indexOf('/', secondSlashIndex + 1);
+  extractMainRoute(childRoute: string) {
+    const secondSlashIndex = childRoute.indexOf('/', childRoute.indexOf('/') + 1);
+    const thirdSlashIndex = childRoute.indexOf('/', secondSlashIndex + 1);
 
     if (thirdSlashIndex !== -1) {
-      return routeUrl.substring(secondSlashIndex + 1, thirdSlashIndex);
+      return childRoute.substring(secondSlashIndex + 1, thirdSlashIndex);
     } else {
-      return routeUrl.substring(secondSlashIndex + 1);
+      return childRoute.substring(secondSlashIndex + 1);
     }
   }
 }
