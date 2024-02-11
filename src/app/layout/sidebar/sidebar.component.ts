@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems = this.renderMenuItems();
-    this.getSelectedMenu();
+    // this.getSelectedMenu();
   }
 
 
@@ -95,12 +95,11 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  getSelectedMenu() {
+  getSelectedMenu(childRoute: string) {
+    const routeSelected: boolean = this.rotuer.url.includes(childRoute);
+
     if (this.rotuer.url === '/dashboard') this.selected = '/dashboard';
-    else if (this.rotuer.url.includes('manage-books')) this.selected = 'manage-books';
-    else if (this.rotuer.url.includes('manage-authors')) this.selected = 'manage-authors';
-    else if (this.rotuer.url.includes('manage-catergories')) this.selected = 'manage-catergories';
-    else if (this.rotuer.url.includes('manage-users')) this.selected = 'manage-users';
+    else if (routeSelected) this.selected = childRoute;
   }
 
 
@@ -108,9 +107,24 @@ export class SidebarComponent implements OnInit {
     this.rotuer.events.subscribe({
       next: (event) => {
         if (event instanceof NavigationEnd) {
-          this.getSelectedMenu();
+          const childRoute = this.extractChildRoute(event.urlAfterRedirects);
+          this.getSelectedMenu(childRoute);
         }
       }
     })
+  }
+
+
+
+
+  extractChildRoute(routeUrl: string) {
+    const secondSlashIndex = routeUrl.indexOf('/', routeUrl.indexOf('/') + 1);
+    const thirdSlashIndex = routeUrl.indexOf('/', secondSlashIndex + 1);
+
+    if (thirdSlashIndex !== -1) {
+      return routeUrl.substring(secondSlashIndex + 1, thirdSlashIndex);
+    } else {
+      return routeUrl.substring(secondSlashIndex + 1);
+    }
   }
 }
