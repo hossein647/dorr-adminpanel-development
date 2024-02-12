@@ -26,8 +26,12 @@ export class CrudService<T> implements ICrud<T> {
 
 
 
-  update(id: string, item: T): Observable<HttpEvent<T>> {
-    throw new Error('Method not implemented.');
+  update(id: string, item: T, endPoint: string, options: any): Observable<HttpEvent<T>> {
+    return this.http.put<T>(`${this.baseApi}/${endPoint}`, item, options)
+      .pipe(
+        shareReplay(),
+        catchError((err) => throwError(() => of(err)))
+      )
   }
 
 
