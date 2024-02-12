@@ -21,7 +21,7 @@ export class CrudService<T> implements ICrud<T> {
       .pipe(
         shareReplay(),
         catchError((err) => throwError(() => of(err)))
-    )
+      )
   }
 
 
@@ -31,7 +31,7 @@ export class CrudService<T> implements ICrud<T> {
       .pipe(
         shareReplay(),
         catchError((err) => throwError(() => of(err)))
-    )
+      )
   }
 
 
@@ -56,7 +56,11 @@ export class CrudService<T> implements ICrud<T> {
 
 
 
-  getAll(): Observable<HttpEvent<T[]>> {
-    throw new Error('Method not implemented.');
+  getAll(endPoint: string, options: any): Observable<HttpEvent<T[]>> {
+    return this.http.get<T[]>(`${this.baseApi}/${endPoint}`, options)
+      .pipe(
+        shareReplay(),
+        catchError((err) => throwError(() => of(err)))
+      )
   }
 }
