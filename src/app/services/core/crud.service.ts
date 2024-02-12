@@ -31,13 +31,17 @@ export class CrudService<T> implements ICrud<T> {
       .pipe(
         shareReplay(),
         catchError((err) => throwError(() => of(err)))
-      )
+    )
   }
 
 
 
-  delete(id: string): Observable<HttpEvent<T>> {
-    throw new Error('Method not implemented.');
+  delete(id: string, endPoint: string, options: any): Observable<HttpEvent<T>> {
+    return this.http.delete<T>(`${this.baseApi}/${endPoint}/${id}`, options)
+      .pipe(
+        shareReplay(),
+        catchError((err) => throwError(() => of(err)))
+      )
   }
 
 
