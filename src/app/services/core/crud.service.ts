@@ -27,7 +27,7 @@ export class CrudService<T> implements ICrud<T> {
 
 
   update(id: string, item: T, endPoint: string, options: any): Observable<HttpEvent<T>> {
-    return this.http.put<T>(`${this.baseApi}/${endPoint}`, item, options)
+    return this.http.put<T>(`${this.baseApi}/${endPoint}/${id}`, item, options)
       .pipe(
         shareReplay(),
         catchError((err) => throwError(() => of(err)))
