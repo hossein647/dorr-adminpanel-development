@@ -4,9 +4,7 @@ import { Observable, catchError, of, shareReplay, throwError } from 'rxjs';
 import { ICrud } from 'src/app/shared/interfaces/i-crud.interface';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CrudService<T> implements ICrud<T> {
 
   baseApi: string = environment.url;
