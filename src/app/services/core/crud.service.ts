@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, shareReplay, throwError } from 'rxjs';
 import { ICrud } from 'src/app/shared/interfaces/i-crud.interface';
 import { environment } from 'src/environments/environment';
 
@@ -16,19 +16,35 @@ export class CrudService<T> implements ICrud<T> {
   ) { }
 
 
-  create(item: T): Observable<T> {
+  create(item: T, endPoint: string, options: any): Observable<HttpEvent<T>> {
+    return this.http.post<T>(`${this.baseApi}/${endPoint}`, item, options)
+      .pipe(
+        shareReplay(),
+        catchError((err) => throwError(() => of(err)))
+    )
+  }
+
+
+
+  update(id: string, item: T): Observable<HttpEvent<T>> {
     throw new Error('Method not implemented.');
   }
-  update(id: string, item: T): Observable<T> {
+
+
+
+  delete(id: string): Observable<HttpEvent<T>> {
     throw new Error('Method not implemented.');
   }
-  delete(id: string): Observable<T> {
+
+
+
+  get(id: string): Observable<HttpEvent<T>> {
     throw new Error('Method not implemented.');
   }
-  get(id: string): Observable<T> {
-    throw new Error('Method not implemented.');
-  }
-  getAll(): Observable<T[]> {
+
+
+
+  getAll(): Observable<HttpEvent<T[]>> {
     throw new Error('Method not implemented.');
   }
 }
