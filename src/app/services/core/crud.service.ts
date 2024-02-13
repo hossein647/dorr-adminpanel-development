@@ -14,51 +14,51 @@ export class CrudService<T> implements ICrud<T> {
   ) { }
 
 
-  create(item: T, endPoint: string, options: any): Observable<HttpEvent<T>> {
+  create(item: T, endPoint: string, options?: any): Observable<HttpEvent<T>> {
     return this.http.post<T>(`${this.baseApi}/${endPoint}`, item, options)
       .pipe(
         shareReplay(),
-        catchError((err) => throwError(() => of(err)))
+        catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  update(id: string, item: T, endPoint: string, options: any): Observable<HttpEvent<T>> {
+  update(id: string, item: T, endPoint: string, options?: any): Observable<HttpEvent<T>> {
     return this.http.put<T>(`${this.baseApi}/${endPoint}/${id}`, item, options)
       .pipe(
         shareReplay(),
-        catchError((err) => throwError(() => of(err)))
+        catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  delete(id: string, endPoint: string, options: any): Observable<HttpEvent<T>> {
+  delete(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>> {
     return this.http.delete<T>(`${this.baseApi}/${endPoint}/${id}`, options)
       .pipe(
         shareReplay(),
-        catchError((err) => throwError(() => of(err)))
+        catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  get(id: string, endPoint: string, options: any): Observable<HttpEvent<T>> {
+  get(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>> {
     return this.http.get<T>(`${this.baseApi}/${endPoint}/${id}`, options)
       .pipe(
         shareReplay(),
-        catchError((err) => throwError(() => of(err)))
+        catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  getAll(endPoint: string, options: any): Observable<HttpEvent<T[]>> {
+  getAll(endPoint: string, options?: any): Observable<HttpEvent<T[]>> {
     return this.http.get<T[]>(`${this.baseApi}/${endPoint}`, options)
       .pipe(
         shareReplay(),
-        catchError((err) => throwError(() => of(err)))
+        catchError((err) => throwError(() => err))
       )
   }
 }
