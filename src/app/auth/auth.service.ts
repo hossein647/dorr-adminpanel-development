@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { GenericHttp } from '../shared/services/generic-http.service';
-import { User } from '../shared/interfaces/user.interface';
+import { User } from '../shared/interfaces/models/user.interface';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 
