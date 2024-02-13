@@ -13,16 +13,12 @@ import { HorizontalMenuComponent } from 'src/app/shared/components/horizontal-me
 })
 export class ReadCategoriesComponent implements OnInit {
   
-  createLabel: string = '';
-  editLabel: string = '';
-  createRouter: string = '';
-  editRouter: string = '';
+  createLabel : string = 'ایجاد';
+  editLabel   : string = 'ویرایش';
+  createRouter: string = 'create';
+  editRouter  : string = '';
 
 
-  ngOnInit(): void {
-    this.createLabel = 'ایجاد';
-    this.editLabel = 'ویرایش'
-    this.createRouter = 'create';
-    this.editRouter = ''
-  }
+  ngOnInit(): void {}
+    
 }
