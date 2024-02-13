@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -11,6 +11,18 @@ import { HorizontalMenuComponent } from 'src/app/shared/components/horizontal-me
   templateUrl: './read-categories.component.html',
   styleUrl: './read-categories.component.scss'
 })
-export class ReadCategoriesComponent {
+export class ReadCategoriesComponent implements OnInit {
+  
+  createLabel: string = '';
+  editLabel: string = '';
+  createRouter: string = '';
+  editRouter: string = '';
 
+
+  ngOnInit(): void {
+    this.createLabel = 'ایجاد';
+    this.editLabel = 'ویرایش'
+    this.createRouter = 'create';
+    this.editRouter = ''
+  }
 }
