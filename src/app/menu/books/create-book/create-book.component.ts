@@ -69,13 +69,20 @@ export class CreateBookComponent {
   }
 
 
+
+  isEmptyInput(formControlName: string): boolean {
+    const control = this.bookForm.controls[formControlName];
+    return (control.invalid && (control.touched || control.dirty))
+  }
+
+  
   setBookData(): BookData {
     return {
       public: {
         type: 'text',
         class: 'p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 md:block m-1',
         directive: 'pInputText',
-        formControlName: null
+        formControlName: ''
       },
       main: [
         {
@@ -85,7 +92,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'name',
           id: 'name',
-          title: 'نام :'
+          title: 'نام :',
+          error: 'فیلد نام را پر کنید.',
         },
         {
           formControlName: 'author',
@@ -94,7 +102,8 @@ export class CreateBookComponent {
           ngClass: 'w-full',
           for: 'author',
           id: 'author',
-          title: 'مولف :'
+          title: 'مولف :',
+          error: 'فیلد مولف را انتخاب کنید.',
         },
         {
           formControlName: 'translator',
@@ -103,7 +112,8 @@ export class CreateBookComponent {
           ngClass: 'w-full',
           for: 'translator',
           id: 'translator',
-          title: 'مترجم :'
+          title: 'مترجم :',
+          error: 'فیلد مترجم را انتخاب کنید.',
         },
       ],
       details: [
@@ -114,7 +124,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'category',
           id: 'category',
-          title: 'دسته بندی :'
+          title: 'دسته بندی :',
+          error: 'فیلد دسته بندی را انتخاب کنید.',
         },
         {
           formControlName: 'page',
@@ -123,7 +134,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'page',
           id: 'page',
-          title: 'صفحات :'
+          title: 'صفحات :',
+          error: 'فیلد صفحات را پر کنید.',
         },
         {
           formControlName: 'volume',
@@ -132,7 +144,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'volume',
           id: 'volume',
-          title: 'تعداد جلد :'
+          title: 'تعداد جلد :',
+          error: 'فیلد تعداد جلد را پر کنید.',
         },
         {
           formControlName: 'imageUrl',
@@ -141,7 +154,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'imageUrl',
           id: 'imageUrl',
-          title: 'تصویر :'
+          title: 'تصویر :',
+          error: 'فیلد تصویر را پر کنید.',
         },
       ],
       publish: [
@@ -152,7 +166,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'publisher',
           id: 'publisher',
-          title: 'ناشر :'
+          title: 'ناشر :',
+          error: 'فیلد ناشر را پر کنید.',
         },
         {
           formControlName: 'publish_age',
@@ -161,7 +176,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'publish_age',
           id: 'publish_age',
-          title: 'سال انتشار :'
+          title: 'سال انتشار :',
+          error: 'فیلد سال انتشار را پر کنید.',
         },
         {
           formControlName: 'publish_n',
@@ -170,7 +186,8 @@ export class CreateBookComponent {
           ngClass: '',
           for: 'publish_n',
           id: 'publish_n',
-          title: 'چاپ :'
+          title: 'چاپ :',
+          error: 'فیلد چاپ را پر کنید.',
         },
       ]
     }
