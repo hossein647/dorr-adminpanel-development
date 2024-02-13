@@ -22,25 +22,28 @@
                             [placeholder]="bookData.main[0].placeholder"
                             [formControlName]="bookData.main[0].formControlName"
                     />
+                    @if(isEmptyInput(bookData.main[0].formControlName)) { 
+                        <small class="w-full md:w-4/5 text-red-500">{{bookData.main[0].error}}</small> 
+                    }
                 </div>
                 <div 
                     class="w-full md:flex md:flex-col md:items-center" 
-                    *ngFor="let item of [bookData.main[1], bookData.main[2]]">
+                    *ngFor="let main of [bookData.main[1], bookData.main[2]]">
                     <label 
                             class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
-                            [for]="item.for">
-                            {{item.title}}
+                            [for]="main.for">
+                            {{main.title}}
                     </label>
                     <p-dropdown 
                                 [options]="countries"
-                                [formControlName]="item.formControlName"
+                                [formControlName]="main.formControlName"
                                 optionLabel="name" 
                                 [filter]="true" 
                                 filterBy="name"
                                 [showClear]="true"
                                 styleClass="w-full p-inputtext-sm"
                                 class="w-full md:w-4/5 mt-1"
-                                [placeholder]="item.placeholder">
+                                [placeholder]="main.placeholder">
                         <ng-template pTemplate="selectedItem" let-selectedOption>
                             <div class="flex align-items-center gap-2">
                                 <div>{{ selectedOption.name }}</div>
@@ -52,6 +55,7 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
+                    @if(isEmptyInput(main.formControlName)) { <small class="w-full md:w-4/5 text-red-500">{{main.error}}</small> }
                 </div>
             </div>
             <div class="col">
@@ -87,20 +91,26 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
+                    @if(isEmptyInput(bookData.details[0].formControlName)) {
+                    <small class="w-full md:w-4/5 text-red-500">{{bookData.details[0].error}}</small>
+                    }
                 </div>
                 <div 
                     class="md:flex md:flex-col md:items-center" 
-                    *ngFor="let item of [bookData.details[1], bookData.details[2], bookData.details[3]]">
+                    *ngFor="let details of [bookData.details[1], bookData.details[2], bookData.details[3]]">
                     <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
-                        [for]="item.for">{{item.title}}</label>
+                        [for]="details.for">{{details.title}}</label>
                     <input 
-                            [id]="item.id" 
-                            [type]="item.type || bookData.public.type" 
+                            [id]="details.id" 
+                            [type]="details.type || bookData.public.type" 
                             [class]="bookData.public.class"
-                            [ngClass]="[item.ngClass]" 
-                            [placeholder]="item.placeholder"
-                            [formControlName]="item.formControlName"/>
-                </div>
+                            [ngClass]="[details.ngClass]" 
+                            [placeholder]="details.placeholder"
+                            [formControlName]="details.formControlName"/>
+                    @if(isEmptyInput(details.formControlName)) {
+                    <small class="w-full md:w-4/5 text-red-500">{{details.error}}</small>
+                    }
+        </div>
             </div>
             <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
@@ -109,20 +119,23 @@
                         اطلاعات ناشر :
                     </h2>
                 </div>
-                <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let item of bookData.publish">
+                <div class="w-full md:flex md:flex-col md:items-center" *ngFor="let publish of bookData.publish">
                     <label 
                             class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
-                            [for]="item.for">
-                            {{item.title}}
+                            [for]="publish.for">
+                            {{publish.title}}
                     </label>
                     <input 
-                            [id]="item.id" 
-                            [type]="item.type || bookData.public.type" 
+                            [id]="publish.id" 
+                            [type]="publish.type || bookData.public.type" 
                             [class]="bookData.public.class"
-                            [ngClass]="[item.ngClass]" 
-                            [placeholder]="item.placeholder"
-                            [formControlName]="item.formControlName"
+                            [ngClass]="[publish.ngClass]" 
+                            [placeholder]="publish.placeholder"
+                            [formControlName]="publish.formControlName"
                     />
+                    @if(isEmptyInput(publish.formControlName)) {
+                    <small class="w-full md:w-4/5 text-red-500">{{publish.error}}</small>
+                    }
                 </div>
             </div>
         </div>
