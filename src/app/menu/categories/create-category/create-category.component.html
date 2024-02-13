@@ -13,20 +13,24 @@
                    pInputText
                    id="name"
                    formControlName="name"
-                   placeholder="نام انگلیسی" />
+                   placeholder="نام انگلیسی"
+                   [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('name')}"/>
+                @if(isEmptyInput('name')) { <small class="w-full md:w-4/5 text-red-500">نام انگلیسی برای دسته بندی وارد کنید</small> }
         </div>
         <div class="flex justify-center flex-col items-center flex-column w-full mt-2">
             <label 
                     for="alias" 
                     class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400">
-                   برچسب :
+                   مستعار :
             </label>
             <input class="p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 
                           md:block m-1 placeholder:text-[13px] placeholder:text-[#737c88]" 
                    pInputText
                    id="alias"
                    formControlName="alias"
-                   placeholder="نام فارسی" />
+                   placeholder="نام فارسی"
+                   [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('alias')}"/>
+                   @if(isEmptyInput('alias')) { <small class="w-full md:w-4/5 text-red-500">نام مستعار فارسی برای دسته بندی وارد کنید</small> }
         </div>
         <div class="submit flex justify-center pb-8 pt-11">
             <p-button 
