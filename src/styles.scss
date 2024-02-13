@@ -14,6 +14,9 @@
 @layer tailwind-utilities {
     @tailwind components;
     @tailwind utilities;
+    .wrapper-card {
+        @apply p-4 sm:p-16 bg-white md:rounded-md md:border md:shadow-md overflow-hidden;
+    }
 }
 
 @layer primeng {
