@@ -65,11 +65,6 @@ export class CreateBookComponent {
   }
   submitBook(bookForm: FormGroup) {
     console.log(bookForm.value);
-  }
-
-
-
-  loadSubmit() {
     this.loading = true;
   }
 
