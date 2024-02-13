@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard/dashboard.service';
-import { ToastComponent } from 'src/app/shared/component/toast/toast.component';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-navbar',

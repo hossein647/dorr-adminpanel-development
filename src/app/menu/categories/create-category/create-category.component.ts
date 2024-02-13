@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CrudService } from 'src/app/services/core/crud.service';
 import { Category } from 'src/app/shared/interfaces/models/category.interface';
 import { MessageService } from 'primeng/api';
-import { ToastComponent } from 'src/app/shared/component/toast/toast.component';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 @Component({
   selector: 'app-create-category',
