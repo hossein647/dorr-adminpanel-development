@@ -1,7 +1,7 @@
 
 export interface BookForm {
     placeholder?: string;
-    formControlName: string | number | null;
+    formControlName: string;
     class: string;
     ngClass?: string;
     type?: string;
@@ -9,4 +9,5 @@ export interface BookForm {
     for?: string;
     id?: string;
     title?: string;
+    error?: string;
 }
