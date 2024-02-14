@@ -12,6 +12,7 @@ import { isEmptyInput } from 'src/app/shared/validations';
   selector: 'app-create-author',
   standalone: true,
   imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule],
+  providers: [CrudService],
   templateUrl: './create-author.component.html',
   styleUrl: './create-author.component.scss'
 })
@@ -51,8 +52,18 @@ export class CreateAuthorComponent implements OnInit {
 
     if (authorForm.invalid) return authorForm.markAllAsTouched();
     this.loading = true;
+    const endPoint = 'author/create';
+    this.crudService.create(authorForm.value, endPoint, { withCredential: true }).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        
+      },
+      error: (err: any) => {
+        console.log(err);
+        
+      }
+    })
 
-    
     
   }
 
