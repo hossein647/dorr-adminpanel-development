@@ -1,39 +1,5 @@
+@use './../../../shared/scss/i-dropdown';
 input::placeholder {
     font-size: 13px;
     color: rgb(115, 124, 136)
-}
-
-:host ::ng-deep p-dropdown {
-    .p-dropdown {
-        margin-top: .25rem;
-    }
-    .p-dropdown-filter {
-        margin-right: auto;
-    }
-    .p-dropdown-filter-icon {
-        right: auto;
-        left: .75rem;
-    }
-
-    .p-dropdown-label {
-        padding-right: 0.65625rem;
-    }
-
-    timesicon {
-        border-right: 1px solid #ccc;
-    }
-
-    .p-dropdown-clear-icon {
-        right: auto;
-        left: 4rem;
-    }
-
-    .p-placeholder {
-        font-size: 13px;
-    }
-
-    .p-icon {
-        width: .75rem;
-        height: .75rem;
-    }
 }
