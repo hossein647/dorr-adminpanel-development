@@ -1,5 +1,5 @@
 
-export interface BookForm {
+export interface IForm {
     placeholder?: string;
     formControlName: string;
     class: string;
