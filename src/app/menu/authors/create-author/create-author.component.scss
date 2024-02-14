@@ -1,0 +1,19 @@
+:host ::ng-deep p-multiSelect {
+    .p-checkbox {
+        margin-right: auto;
+        margin-left: .5rem
+    }
+
+    .p-multiselect-close {
+        margin-left: auto;
+        margin-right: .5rem;
+    }
+
+    .p-multiselect-filter-icon {
+        left: .75rem;
+        right: auto;
+    }
+    .p-multiselect-label {
+        font-size: 13px
+    }
+}
