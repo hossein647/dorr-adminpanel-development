@@ -38,7 +38,7 @@ export class CreateAuthorComponent implements OnInit {
       name: ['', Validators.required],
       birthDate: ['', Validators.required],
       deathDate: ['', Validators.required],
-      book: [undefined, Validators.required],
+      book: [undefined],
     })
   }
 
