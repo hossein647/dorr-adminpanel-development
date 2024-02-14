@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
-import { BookData } from 'src/app/shared/interfaces/book-data.interface';
+import { IData } from 'src/app/shared/interfaces/i-data.interface';
 import { DropdownModule } from 'primeng/dropdown';
 
 
@@ -18,7 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class CreateBookComponent {
 
   bookForm: FormGroup;
-  bookData: BookData;
+  bookData: IData;
   loading: boolean = false;
   selectedCountry: string | undefined;
   countries = [
@@ -76,7 +76,7 @@ export class CreateBookComponent {
   }
 
   
-  setBookData(): BookData {
+  setBookData(): IData {
     return {
       public: {
         type: 'text',
