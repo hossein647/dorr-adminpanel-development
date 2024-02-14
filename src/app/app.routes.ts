@@ -33,7 +33,17 @@ export const routes: Routes = [
             },
             {
                 path: 'manage-authors',
-                loadComponent: () => import('./menu/authors/authors.component').then((c) => c.AuthorsComponent),
+                // loadComponent: () => import('./menu/authors/authors.component').then((c) => c.AuthorsComponent),
+                children: [
+                    {
+                        path: '',
+                        loadComponent: () => import('./menu/authors/read-authors/read-authors.component').then((c) => c.ReadAuthorsComponent),
+                    },
+                    {
+                        path: 'create',
+                        loadComponent: () => import('./menu/authors/create-author/create-author.component').then((c) => c.CreateAuthorComponent),
+                    },
+                ]
             },
             {
                 path: 'manage-books',
