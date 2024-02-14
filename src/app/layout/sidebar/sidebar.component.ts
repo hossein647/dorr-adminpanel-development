@@ -52,25 +52,25 @@ export class SidebarComponent implements OnInit {
             id: 'sub-item',
             label: 'نویسندگان', 
             iconClass: PrimeIcons.USER_EDIT, 
-            routerLink: 'manage-authors'
+            routerLink: 'read-authors'
           },
           { 
             id: 'sub-item',
             label: 'کتاب ها', 
             iconClass: PrimeIcons.BOOK, 
-            routerLink: 'manage-books'
+            routerLink: 'read-books'
           },
           { 
             id: 'sub-item',
             label: 'دسته بندی ها', 
             iconClass: PrimeIcons.TH_LARGE, 
-            routerLink: 'manage-categories'
+            routerLink: 'read-categories'
           },
           { 
             id: 'sub-item',
             label: 'کاربران', 
             iconClass: PrimeIcons.USERS, 
-            routerLink: 'manage-users'
+            routerLink: 'read-users'
           },
 
         ]

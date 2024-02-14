@@ -32,8 +32,7 @@ export const routes: Routes = [
                 pathMatch: 'full',
             },
             {
-                path: 'manage-authors',
-                // loadComponent: () => import('./menu/authors/authors.component').then((c) => c.AuthorsComponent),
+                path: 'read-authors',
                 children: [
                     {
                         path: '',
@@ -46,8 +45,7 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: 'manage-books',
-                // loadComponent: () => import('./menu/books/books.component').then((c) => c.BooksComponent),
+                path: 'read-books',
                 children: [
                     {
                         path: '',
@@ -61,8 +59,7 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: 'manage-categories',
-                // loadComponent: () => import('./menu/categories/categories.component').then((c) => c.CategoriesComponent),
+                path: 'read-categories',
                 children: [
                     {
                         path: '',
@@ -76,7 +73,7 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: 'manage-users',
+                path: 'read-users',
                 loadComponent: () => import('./menu/users/users.component').then((c) => c.UsersComponent),
             },
         ]
