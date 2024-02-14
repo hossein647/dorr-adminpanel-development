@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect'; 
-import { isEmptyInput } from 'src/app/shared/validations/empty.validation';
+import { CrudService } from 'src/app/services/core/crud.service';
+import { Author } from 'src/app/shared/interfaces';
+import { isEmptyInput } from 'src/app/shared/validations';
+
 
 @Component({
   selector: 'app-create-author',
@@ -23,6 +26,7 @@ export class CreateAuthorComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private crudService: CrudService<Author>
   ) {}
 
 
@@ -42,7 +46,15 @@ export class CreateAuthorComponent implements OnInit {
     })
   }
 
-  submitAuthor(authorForm: FormGroup) {}
+  submitAuthor(authorForm: FormGroup) {
+    console.log(authorForm.value);
+
+    if (authorForm.invalid) return authorForm.markAllAsTouched();
+    this.loading = true;
+
+    
+    
+  }
 
 
 
