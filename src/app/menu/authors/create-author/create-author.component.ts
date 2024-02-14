@@ -55,22 +55,28 @@ export class CreateAuthorComponent implements OnInit {
   getAuthorData(): any[] {
     return [
       {
+        label: 'نام :',
         formControlName: 'name',
         placeholder: 'نام نویسنده',
         for: 'name',
         id: 'name',
+        error: 'فیلد نام را پر کنید.'
       },
       {
+        label: 'سال تولد :',
         formControlName: 'birthDate',
-        placeholder: 'سال تولد',
+        placeholder: 'سال تولد به عدد',
         for: 'birthDate',
         id: 'birthDate',
+        error: 'فیلد سال تولد را پر کنید.'
       },
       {
+        label: 'سال وفات :',
         formControlName: 'deathDate',
-        placeholder: 'سال وفات',
+        placeholder: 'سال وفات به عدد',
         for: 'deathDate',
         id: 'deathDate',
+        error: 'فیلد سال وفات را پر کنید.'
       },
     ]
   }
