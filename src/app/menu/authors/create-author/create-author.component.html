@@ -3,8 +3,8 @@
         <div class="flex justify-center flex-col items-center flex-column w-full ">
             @for (item of authorData; track item.formControlName){
                 <div class="flex justify-center flex-col items-center flex-column w-full">
-                    <label [for]="item.for" class="inline-block mr-1 mt-2 w-full md:w-4/5 text-base text-gray-400">
-                        نام :
+                    <label [for]="item.for" class="inline-block mr-1 mt-4 w-full md:w-4/5 text-base text-gray-400">
+                        {{item.label}}
                     </label>
                     <input 
                             class="
@@ -13,10 +13,10 @@
                             pInputText [id]="item.id"
                             [formControlName]="item.formControlName" 
                             [placeholder]="item.placeholder" 
-                            [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('name')}" 
+                            [ngClass]="{'ng-invalid ng-dirty': isEmptyInput(item.formControlName)}" 
                     />
-                    @if(isEmptyInput('name')) { 
-                        <small class="w-full md:w-4/5 text-red-500">نام انگلیسی برای دسته بندی وارد کنید</small>
+                    @if(isEmptyInput(item.formControlName)) { 
+                        <small class="w-full md:w-4/5 text-red-500">{{item.error}}</small>
                     }
                 </div>
             }
@@ -24,7 +24,15 @@
                 <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="book">
                     کتاب :
                 </label>
-                
+                <p-multiSelect 
+                                [options]="countries" 
+                                [filter]="true" 
+                                optionLabel="name"
+                                formControlName="book"
+                                styleClass="w-full"
+                                class="w-4/5"
+                                placeholder="انتخاب کتاب">
+                </p-multiSelect>
                 @if(isEmptyInput('book')) { 
                     <small class="w-full md:w-4/5 text-red-500">برای فیلد کتاب یک مورد انتخاب کنید.</small> 
                 }
