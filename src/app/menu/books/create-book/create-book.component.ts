@@ -6,12 +6,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { IData } from 'src/app/shared/interfaces/i-data.interface';
 import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule, DropdownModule],
+  imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule, DropdownModule, SelectButtonModule],
   templateUrl: './create-book.component.html',
   styleUrl: './create-book.component.scss'
 })
@@ -55,6 +56,7 @@ export class CreateBookComponent {
       author: [this.selectedCountry, Validators.required],
       translator: [this.selectedCountry, Validators.required],
       category: [this.selectedCountry, Validators.required],
+      language: [this.selectedCountry, Validators.required],
       volume: [null, Validators.required],
       page: [null, Validators.required],
       publisher: ['', Validators.required],
