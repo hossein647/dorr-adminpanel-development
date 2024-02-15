@@ -58,6 +58,22 @@
                     @if(isEmptyInput(main.formControlName)) { <small class="w-full md:w-4/5 text-red-500">{{main.error}}</small> }
                 </div>
             </div>
+            <div class="language w-full md:flex md:flex-col md:items-center">
+                <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="language">
+                    زبان :
+                </label>
+                <p-selectButton 
+                                [options]="[{label: 'فارسی', value: 'farsi'}, {label: 'عربی', value: 'arabic'}]"
+                                formControlName="language" 
+                                id="language" 
+                                class="w-4/5" 
+                                optionLabel="label" 
+                                optionValue="value">
+                </p-selectButton>
+                @if(isEmptyInput('language')) {
+                    <small class="w-full md:w-4/5 text-red-600">یک زبان انتخاب کنید</small>
+                }
+            </div>
             <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
                     <h2
