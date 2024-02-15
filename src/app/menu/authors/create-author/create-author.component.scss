@@ -1,3 +1,5 @@
+@use './../../../shared/scss/i-select-button';
+
 :host ::ng-deep p-multiSelect {
     .p-checkbox {
         margin-right: auto;
@@ -18,77 +20,23 @@
     }
 }
 
-:host ::ng-deep p-selectbutton {
-    &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
-        border: 1px solid red;
-        border-radius: 6px;
+:host ::ng-deep .p-selectbutton {
+    > * {
+        width: 33.33333%;
     }
-    margin: .25rem;
-    .p-selectbutton {
-        > :nth-of-type(1) {
-            border-radius: 0 6px 6px 0;
-        }
-        > :nth-of-type(2) {
-            border-radius: 0;
-            @media (max-width: 460px) {
-                margin: 4px 0;
-            }
-        }
-        > :nth-of-type(3) {
-            border-radius: 6px 0 0 6px;
-        }
-        > * {
-            padding: 0.65625rem 0.65625rem;
-            @media (max-width: 460px) {
-                width: 100%;
-                border-radius: 6px !important;
-            }
-            width: 33.3333333%;
-            transition: none;
-            &:focus {
-                box-shadow: none;
-                outline: none;
-            }
-            &.p-highlight {
-
-                > span {
-                    color: white;
-                }
-            }
-            border: 1px solid rgb(223, 223, 223);
-            > span {
-                color: rgb(156 163 175);
-                font-weight: 400;
-            }
-        }
-
+    > :nth-of-type(1) {
+        border-radius: 0 6px 6px 0;
     }
-    .p-button-label {
-        transition: none;
-    }
-}
+    
+    > :nth-of-type(2) {
+        border-radius: 0;
 
-:host ::ng-deep .language p-selectbutton {
-    &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
-        border: 1px solid red;
-        border-radius: 6px;
+        @media (max-width: 460px) {
+            margin: 4px 0;
+        }
     }
-    margin: .25rem;
-    .p-selectbutton {
-        > * {
-            width: 50%;
-            padding: 0.65625rem 0.65625rem;
-            @media (max-width: 460px) {
-                width: 100%;
-                border-radius: 6px !important;
-            }
-        }
-        > :nth-of-type(2) {
-            border-radius: 6px 0 0 6px !important;
-
-            @media (max-width: 460px) {
-                margin: 4px 0;
-            }
-        }
+    
+    > :nth-of-type(3) {
+        border-radius: 6px 0 0 6px;
     }
 }
