@@ -3,5 +3,6 @@ export interface Author {
     books?: string[];
     birthDate: string;
     deathData: string;
-    profession: 'Author' | 'Translator' | 'Both'
+    profession: 'Author' | 'Translator' | 'Both';
+    description: string;
 }
