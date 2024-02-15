@@ -16,7 +16,7 @@
                             [ngClass]="{'ng-invalid ng-dirty': isEmptyInput(item.formControlName)}" 
                     />
                     @if(isEmptyInput(item.formControlName)) { 
-                        <small class="w-full md:w-4/5 text-red-500">{{item.error}}</small>
+                        <small class="w-full md:w-4/5 text-red-600">{{item.error}}</small>
                     }
                 </div>
             }
@@ -45,8 +45,12 @@
                                 id="profession"
                                 class="w-4/5"
                                 optionLabel="label"
-                                optionValue="value">
+                                optionValue="value"
+                                [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('profession')}">
                 </p-selectButton>
+                @if(isEmptyInput('profession')) {
+                    <small class="w-full md:w-4/5 text-red-600">یک تخصص انتخاب کنید</small>
+                }
             </div>
             <div class="language w-full md:flex md:flex-col md:items-center">
                 <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="language">
@@ -60,6 +64,9 @@
                                 optionLabel="label"
                                 optionValue="value">
                 </p-selectButton>
+                @if(isEmptyInput('language')) {
+                    <small class="w-full md:w-4/5 text-red-600">یک زبان انتخاب کنید</small>
+                }
             </div>
         </div>
         <div class="submit flex justify-center pb-8 pt-11">
