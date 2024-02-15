@@ -40,7 +40,7 @@
                     تخصص :
                 </label>
                 <p-selectButton 
-                                [options]="typeAuthor" 
+                                [options]="profession" 
                                 formControlName="profession"
                                 id="profession"
                                 class="w-4/5"
@@ -60,13 +60,26 @@
                                 [options]="[{label: 'فارسی', value: 'farsi'}, {label: 'عربی', value: 'arabic'}]" 
                                 formControlName="language"
                                 id="language"
-                                class="w-4/5"
+                                class="w-4/5 p-button-sm"
                                 optionLabel="label"
                                 optionValue="value">
                 </p-selectButton>
                 @if(isEmptyInput('language')) {
                     <small class="w-full md:w-4/5 text-red-600">یک زبان انتخاب کنید</small>
                 }
+            </div>
+            <div class="language w-full md:flex md:flex-col md:items-center">
+                <label class="inline-block w-full mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="description">
+                    توضیحات :
+                </label>
+                <textarea 
+                            rows="5" 
+                            cols="30"
+                            id="description"
+                            pInputTextarea 
+                            formControlName="description"
+                            class="w-full md:w-4/5 m-1">
+                </textarea>
             </div>
         </div>
         <div class="submit flex justify-center pb-8 pt-11">
