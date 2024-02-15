@@ -1,0 +1,46 @@
+:host ::ng-deep p-selectbutton {
+
+    &.ng-invalid.ng-touched,
+    &.ng-invalid.ng-dirty {
+        border: 1px solid red;
+        border-radius: 6px;
+    }
+
+    margin: .25rem;
+
+    .p-selectbutton {
+
+        >* {
+            padding: 0.65625rem 0.65625rem;
+            transition: none;
+            border: 1px solid rgb(223, 223, 223);
+
+            @media (max-width: 460px) {
+                width: 100%;
+                border-radius: 6px !important;
+            }
+
+            &.p-highlight {
+
+                >span {
+                    color: white;
+                }
+            }
+
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+
+            >span {
+                color: rgb(156 163 175);
+                font-weight: 400;
+            }
+        }
+
+    }
+
+    .p-button-label {
+        transition: none;
+    }
+}
