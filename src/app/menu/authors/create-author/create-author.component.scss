@@ -58,3 +58,22 @@
 
     }
 }
+
+:host ::ng-deep .language p-selectbutton {
+    .p-selectbutton {
+        > * {
+            width: 50%;
+            @media (max-width: 400px) {
+                width: 100%;
+                border-radius: 6px !important;
+            }
+        }
+        > :nth-of-type(2) {
+            border-radius: 6px 0 0 6px !important;
+
+            @media (max-width: 400px) {
+                margin: 4px 0;
+            }
+        }
+    }
+}
