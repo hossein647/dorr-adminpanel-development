@@ -1,4 +1,4 @@
-<div class="create-author wrapper-create">
+<div class="create-author wrapper-create min-h-screen">
     <form class="w-full" [formGroup]="authorForm" (ngSubmit)="submitAuthor(authorForm)">
         <div class="flex justify-center flex-col items-center flex-column w-full ">
             @for (item of authorData; track item.formControlName){
@@ -35,14 +35,27 @@
                                 placeholder="انتخاب کتاب">
                 </p-multiSelect>
             </div>
-            <div class="w-full md:flex md:flex-col md:items-center">
-                <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="type">
-                    نوع :
+            <div class="profession w-full md:flex md:flex-col md:items-center">
+                <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="profession">
+                    تخصص :
                 </label>
                 <p-selectButton 
                                 [options]="typeAuthor" 
-                                formControlName="type"
-                                id="type"
+                                formControlName="profession"
+                                id="profession"
+                                class="w-4/5"
+                                optionLabel="label"
+                                optionValue="value">
+                </p-selectButton>
+            </div>
+            <div class="language w-full md:flex md:flex-col md:items-center">
+                <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="language">
+                    زبان :
+                </label>
+                <p-selectButton 
+                                [options]="[{label: 'فارسی', value: 'farsi'}, {label: 'عربی', value: 'arabic'}]" 
+                                formControlName="language"
+                                id="language"
                                 class="w-4/5"
                                 optionLabel="label"
                                 optionValue="value">
