@@ -53,23 +53,23 @@ export class CreateAuthorComponent implements OnInit {
       deathDate: ['', Validators.required],
       books: [undefined],
       profession: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
     })
   }
 
   submitAuthor(authorForm: FormGroup) {
-    console.log(authorForm.value);
     if (authorForm.invalid) return authorForm.markAllAsTouched();
-    return;
     this.loading = true;
     const endPoint = 'author/create';
-    this.crudService.create(authorForm.value, endPoint, { withCredential: true }).subscribe({
+    console.log(authorForm.value);
+    this.crudService.create(authorForm.value, endPoint, { withCredentials: true }).subscribe({
       next: (res: any) => {
+        this.loading = false;
         console.log(res);
         
       },
       error: (err: any) => {
+        this.loading = false;
         console.log(err);
         
       }
