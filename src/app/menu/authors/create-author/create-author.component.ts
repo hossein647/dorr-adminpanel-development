@@ -7,12 +7,13 @@ import { CrudService } from 'src/app/services/core/crud.service';
 import { Author } from 'src/app/shared/interfaces';
 import { isEmptyInput } from 'src/app/shared/validations';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 @Component({
   selector: 'app-create-author',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule, SelectButtonModule],
+  imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule, SelectButtonModule, InputTextareaModule],
   providers: [CrudService],
   templateUrl: './create-author.component.html',
   styleUrl: './create-author.component.scss'
@@ -24,7 +25,7 @@ export class CreateAuthorComponent implements OnInit {
   loading: boolean = false;
   authorData: any[];
   countries: [] = []
-  typeAuthor: any[];
+  profession: any[];
   
 
   constructor(
@@ -36,7 +37,7 @@ export class CreateAuthorComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.authorData = this.getAuthorData();
-    this.typeAuthor = [
+    this.profession = [
       { label: 'نویسنده', value: 'author' }, 
       { label: 'مترجم', value: 'translator' },
       { label: 'هر دو', value: 'both' }, 
@@ -53,13 +54,14 @@ export class CreateAuthorComponent implements OnInit {
       books: [undefined],
       profession: ['', Validators.required],
       language: ['', Validators.required],
+      description: ['', Validators.required],
     })
   }
 
   submitAuthor(authorForm: FormGroup) {
     console.log(authorForm.value);
-
     if (authorForm.invalid) return authorForm.markAllAsTouched();
+    return;
     this.loading = true;
     const endPoint = 'author/create';
     this.crudService.create(authorForm.value, endPoint, { withCredential: true }).subscribe({
