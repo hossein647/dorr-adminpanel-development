@@ -52,23 +52,7 @@
                     <small class="w-full md:w-4/5 text-red-600">یک تخصص انتخاب کنید</small>
                 }
             </div>
-            <div class="language w-full md:flex md:flex-col md:items-center">
-                <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="language">
-                    زبان :
-                </label>
-                <p-selectButton 
-                                [options]="[{label: 'فارسی', value: 'farsi'}, {label: 'عربی', value: 'arabic'}]" 
-                                formControlName="language"
-                                id="language"
-                                class="w-4/5"
-                                optionLabel="label"
-                                optionValue="value">
-                </p-selectButton>
-                @if(isEmptyInput('language')) {
-                    <small class="w-full md:w-4/5 text-red-600">یک زبان انتخاب کنید</small>
-                }
-            </div>
-            <div class="language w-full md:flex md:flex-col md:items-center">
+            <div class="w-full md:flex md:flex-col md:items-center">
                 <label class="inline-block w-full mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="description">
                     توضیحات :
                 </label>
