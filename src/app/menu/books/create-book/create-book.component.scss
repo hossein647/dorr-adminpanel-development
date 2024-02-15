@@ -1,5 +1,33 @@
 @use './../../../shared/scss/i-dropdown';
+@use './../../../shared/scss/i-select-button';
+
 input::placeholder {
     font-size: 13px;
     color: rgb(115, 124, 136)
+}
+
+:host ::ng-deep .language p-selectbutton {
+
+    .p-selectbutton {
+        >* {
+            width: 50%;
+        }
+
+        > :nth-of-type(1) {
+            border-radius: 0 6px 6px 0;
+
+            @media (max-width: 460px) {
+                margin: 4px 0;
+                border-radius: 6px
+            }
+        }
+        > :nth-of-type(2) {
+            border-radius: 6px 0 0 6px;
+
+            @media (max-width: 460px) {
+                margin: 4px 0;
+                border-radius: 6px
+            }
+        }
+    }
 }
