@@ -3,5 +3,5 @@ export interface Author {
     books?: string[];
     birthDate: string;
     deathData: string;
-    type: 'Author' | 'Translator' | 'Both'
+    profession: 'Author' | 'Translator' | 'Both'
 }
