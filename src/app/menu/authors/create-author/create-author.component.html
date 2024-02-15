@@ -1,4 +1,4 @@
-<div class="create-author wrapper-create min-h-screen">
+<div class="create-author wrapper-create !overflow-auto">
     <form class="w-full" [formGroup]="authorForm" (ngSubmit)="submitAuthor(authorForm)">
         <div class="flex justify-center flex-col items-center flex-column w-full ">
             @for (item of authorData; track item.formControlName){
