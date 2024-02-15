@@ -19,7 +19,7 @@
 }
 
 :host ::ng-deep p-selectbutton {
-    &.ng-invalid.ng-touched {
+    &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
         border: 1px solid red;
         border-radius: 6px;
     }
@@ -30,7 +30,7 @@
         }
         > :nth-of-type(2) {
             border-radius: 0;
-            @media (max-width: 400px) {
+            @media (max-width: 460px) {
                 margin: 4px 0;
             }
         }
@@ -38,7 +38,8 @@
             border-radius: 6px 0 0 6px;
         }
         > * {
-            @media (max-width: 400px) {
+            padding: 0.65625rem 0.65625rem;
+            @media (max-width: 460px) {
                 width: 100%;
                 border-radius: 6px !important;
             }
@@ -62,10 +63,13 @@
         }
 
     }
+    .p-button-label {
+        transition: none;
+    }
 }
 
 :host ::ng-deep .language p-selectbutton {
-    &.ng-invalid.ng-touched {
+    &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
         border: 1px solid red;
         border-radius: 6px;
     }
@@ -73,7 +77,8 @@
     .p-selectbutton {
         > * {
             width: 50%;
-            @media (max-width: 400px) {
+            padding: 0.65625rem 0.65625rem;
+            @media (max-width: 460px) {
                 width: 100%;
                 border-radius: 6px !important;
             }
@@ -81,7 +86,7 @@
         > :nth-of-type(2) {
             border-radius: 6px 0 0 6px !important;
 
-            @media (max-width: 400px) {
+            @media (max-width: 460px) {
                 margin: 4px 0;
             }
         }
