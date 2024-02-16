@@ -1,1 +1,1 @@
-export * from './empty.validation'
+export * from './is-empty-input.validation'
