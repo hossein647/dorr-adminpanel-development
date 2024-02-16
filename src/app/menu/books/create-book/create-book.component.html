@@ -35,7 +35,7 @@
                             {{main.title}}
                     </label>
                     <p-dropdown 
-                                [options]="countries"
+                                [options]="authors"
                                 [formControlName]="main.formControlName"
                                 optionLabel="name" 
                                 [filter]="true" 
@@ -87,7 +87,7 @@
                             [for]="bookData.details[0].for">
                             {{bookData.details[0].title}}
                     </label>
-                    <p-dropdown [options]="countries"
+                    <p-dropdown [options]="[]"
                                 [formControlName]="bookData.details[0].formControlName"
                                 optionLabel="name"
                                 [filter]="true"
