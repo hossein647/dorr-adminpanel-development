@@ -8,13 +8,15 @@ import { Author } from 'src/app/shared/interfaces';
 import { isEmptyInput } from 'src/app/shared/validations';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessageService } from 'primeng/api';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 
 
 @Component({
   selector: 'app-create-author',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule, SelectButtonModule, InputTextareaModule],
-  providers: [CrudService],
+  imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule, SelectButtonModule, InputTextareaModule, ToastComponent],
+  providers: [CrudService, MessageService],
   templateUrl: './create-author.component.html',
   styleUrl: './create-author.component.scss'
 })
@@ -30,7 +32,8 @@ export class CreateAuthorComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private crudService: CrudService<Author>
+    private crudService: CrudService<Author>,
+    private messageService: MessageService
   ) {}
 
 
@@ -65,13 +68,12 @@ export class CreateAuthorComponent implements OnInit {
     this.crudService.create(authorForm.value, endPoint, { withCredentials: true }).subscribe({
       next: (res: any) => {
         this.loading = false;
-        console.log(res);
-        
+        this.authorForm.reset();
+        this.messageService.add({ severity: 'success', summary: res.message });
       },
       error: (err: any) => {
         this.loading = false;
-        console.log(err);
-        
+        this.messageService.add({ severity: 'error', summary: err.error.message });        
       }
     })
 
