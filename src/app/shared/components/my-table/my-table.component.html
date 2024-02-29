@@ -1,22 +1,20 @@
-<div class="read-book p-4 sm:p-16 bg-white md:rounded-md md:border md:shadow-md overflow-hidden">
-    <p-table [columns]="cols" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                @for (col of columns; track col.name) {
-                <th class="text-center">
-                    {{ col.header }}
-                </th>
-                }
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                @for (col of columns; track col.name) {
-                <td class="text-center">
-                    {{ rowData[col.field] }}
-                </td>
-                }
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
+<p-table [columns]="cols" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            @for (col of columns; track col.name) {
+            <th class="text-center">
+                {{ col.header }}
+            </th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            @for (col of columns; track col.name) {
+            <td class="text-center">
+                {{ rowData[col.field] }}
+            </td>
+            }
+        </tr>
+    </ng-template>
+</p-table>
