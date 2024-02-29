@@ -12,7 +12,7 @@ import { Column } from '../../interfaces/models/column.interface';
   styleUrl: './my-table.component.scss'
 })
 export class MyTableComponent {
-  @Input() data : CustomBook[]
+  @Input() data : any[]
   @Input() cols : Column[]
 
   ngOnInit() {
