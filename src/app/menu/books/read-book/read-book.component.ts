@@ -21,6 +21,7 @@ export class ReadBookComponent {
 
   ngOnInit() {
     this.cols = [
+      { field: 'index', header: 'ردیف' },
       { field: 'name', header: 'نام کتاب' },
       { field: 'author', header: 'نویسنده' },
       { field: 'category', header: 'دسته بندی' },
