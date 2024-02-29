@@ -26,19 +26,16 @@ export class ReadAuthorsComponent {
     this.cols = [
       { field: 'index', header: 'ردیف' },
       { field: 'name', header: 'نام نویسنده' },
-      { field: 'birthDate', header: 'تاریخ تولد' },
       { field: 'profession', header: 'تخصص' }
     ]
 
     this.authors = [
       {
         name: 'حسین',
-        birthDate: '1935',
         profession: "Author"
       },
       {
         name: 'امید',
-        birthDate: '1935',
         profession: "Author"
       }
     ]
