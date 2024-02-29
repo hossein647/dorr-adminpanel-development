@@ -4,11 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MyTableComponent } from 'src/app/shared/components/my-table/my-table.component';
 import { Book, CustomBook } from 'src/app/shared/interfaces';
-
-interface Column {
-  field: string;
-  header: string;
-}
+import { Column } from 'src/app/shared/interfaces/models/column.interface';
 
 @Component({
   selector: 'app-read-book',
