@@ -1,11 +1,8 @@
 import { Component, Input, input } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Book, CustomBook } from 'src/app/shared/interfaces';
+import { Column } from '../../interfaces/models/column.interface';
 
-interface Column {
-  field: string;
-  header: string;
-}
 
 @Component({
   selector: 'app-my-table',
