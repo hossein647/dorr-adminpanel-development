@@ -3,3 +3,5 @@ export interface Category {
     name: string;
     alias: string;
 }
+
+export type CustomCategory = Partial<Category>
