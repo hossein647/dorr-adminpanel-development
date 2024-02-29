@@ -11,6 +11,7 @@ import { Column } from 'src/app/shared/interfaces/models/column.interface';
   templateUrl: './read-authors.component.html',
   styleUrl: './read-authors.component.scss'
 })
+
 export class ReadAuthorsComponent {
   createLabel: string = 'ایجاد';
   editLabel: string = 'ویرایش';
@@ -23,6 +24,7 @@ export class ReadAuthorsComponent {
 
   ngOnInit() {
     this.cols = [
+      { field: 'index', header: 'ردیف' },
       { field: 'name', header: 'نام نویسنده' },
       { field: 'birthDate', header: 'تاریخ تولد' },
       { field: 'profession', header: 'تخصص' }
@@ -35,7 +37,7 @@ export class ReadAuthorsComponent {
         profession: "Author"
       },
       {
-        name: 'حسین',
+        name: 'امید',
         birthDate: '1935',
         profession: "Author"
       }
