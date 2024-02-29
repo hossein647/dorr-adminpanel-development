@@ -1,1 +1,7 @@
-<p>users works!</p>
+<app-horizontal-menu [createLabel]="createLabel" [editLabel]="editLabel" [createRouter]="createRouter"
+    [editRouter]="editRouter">
+</app-horizontal-menu>
+<div class="read-authors wrapper-card">
+    <app-my-table [cols]="cols" [data]="users">
+    </app-my-table>
+</div>
