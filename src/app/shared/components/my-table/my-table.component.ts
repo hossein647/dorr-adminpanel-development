@@ -12,37 +12,9 @@ import { Column } from '../../interfaces/models/column.interface';
   styleUrl: './my-table.component.scss'
 })
 export class MyTableComponent {
-  // rows = input.required<CustomBook>();
-  // cols = input.required<Column>();
   @Input() data : CustomBook[]
   @Input() cols : Column[]
 
   ngOnInit() {
-    // this.cols([
-    //   { field: 'name', header: 'نام کتاب' },
-    //   { field: 'author', header: 'نویسنده' },
-    //   { field: 'category', header: 'دسته بندی' },
-    //   { field: 'publisher', header: 'انتشارات' }
-    // ]) 
-
-    // this.rows = [
-    //   {[
-    //   { field: 'name', header: 'نام کتاب' },
-    //   { field: 'author', header: 'نویسنده' },
-    //   { field: 'category', header: 'دسته بندی' },
-    //   { field: 'publisher', header: 'انتشارات' }
-    // ]
-    //     name: 'فارسی',
-    //     author: 'سعدی',
-    //     category: 'ادبیات',
-    //     publisher: 'بیان'
-    //   },
-    //   {
-    //     name: 'ریاضی',
-    //     author: 'حوارزمی',
-    //     category: 'ریاضیات',
-    //     publisher: 'خودم'
-    //   }
-    // ]
   }
 }
