@@ -7,15 +7,17 @@ import { TabViewModule } from 'primeng/tabview';
 import { IData } from 'src/app/shared/interfaces/i-data.interface';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { CrudService } from 'src/app/services/core/crud.service';
-import { Author, Book } from 'src/app/shared/interfaces';
+import { Author, Book, Category } from 'src/app/shared/interfaces';
+import { BookService } from 'src/app/shared/services/book.service';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
   imports: [ReactiveFormsModule, InputTextModule, CommonModule, ButtonModule, TabViewModule, DropdownModule, SelectButtonModule],
-  providers: [CrudService],
+  providers: [BookService],
   templateUrl: './create-book.component.html',
   styleUrl: './create-book.component.scss'
 })
@@ -26,20 +28,23 @@ export class CreateBookComponent {
   loading: boolean = false;
   selectedCountry: string | undefined;
   authors: Author[] = [];
-
+  categories: Category[] = [];
 
 
 
 
   constructor(
     private foromBuilder: FormBuilder,
-    private crudService: CrudService<Book>,
+    private bookService: BookService<Book>,
+    private categoryService: CategoryService<Category>,
   ) { }
+
 
   ngOnInit(): void {
     this.initilizeForm();
     this.bookData = this.setBookData();
     this.getAuthors();
+    this.getCategories();
   }
 
 
@@ -76,18 +81,23 @@ export class CreateBookComponent {
 
   
 
-  getAuthors() {
-    this.crudService.getAll('author/getAll', { withCredentials: true }).subscribe({
-      next: (res: any) => {
-        this.authors = res.data;
-      },
-      error: (err: any) => {
-        console.log(err);
-      }
-    });
+  async getAuthors(): Promise<any> {
+    const response: any = await (lastValueFrom(this.bookService.getAll('author/getAll', false)));
+    this.authors = response.data;
+    
   }
 
 
+
+  async getCategories() {
+    const request = this.categoryService.getAll('category/getAll', false);
+    const response: any = await (firstValueFrom(request))
+    console.log(response);
+    
+    this.categories = response.data;
+  }
+
+  
 
   setBookData(): IData {
     return {
@@ -98,16 +108,6 @@ export class CreateBookComponent {
         formControlName: ''
       },
       main: [
-        {
-          formControlName: 'name',
-          placeholder: 'صحیح بخاری',
-          class: '',
-          ngClass: '',
-          for: 'name',
-          id: 'name',
-          title: 'نام :',
-          error: 'فیلد نام را پر کنید.',
-        },
         {
           formControlName: 'author',
           placeholder: 'انتخاب نویسنده',
@@ -130,16 +130,6 @@ export class CreateBookComponent {
         },
       ],
       details: [
-        {
-          formControlName: 'category',
-          placeholder: 'انتخاب دسته بندی',
-          class: '',
-          ngClass: '',
-          for: 'category',
-          id: 'category',
-          title: 'دسته بندی :',
-          error: 'فیلد دسته بندی را انتخاب کنید.',
-        },
         {
           formControlName: 'page',
           placeholder: '600',

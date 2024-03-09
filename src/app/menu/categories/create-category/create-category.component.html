@@ -13,7 +13,9 @@
                    formControlName="name"
                    placeholder="نام انگلیسی"
                    [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('name')}"/>
-                @if(isEmptyInput('name')) { <small class="w-full md:w-4/5 text-red-500">نام انگلیسی برای دسته بندی وارد کنید</small> }
+                @if(isEmptyInput('name')) { 
+                    <small class="w-full md:w-4/5 text-red-500">نام انگلیسی برای دسته بندی وارد کنید</small> 
+                }
         </div>
         <div class="flex justify-center flex-col items-center flex-column w-full mt-2">
             <label 
@@ -28,7 +30,9 @@
                    formControlName="alias"
                    placeholder="نام فارسی"
                    [ngClass]="{'ng-invalid ng-dirty': isEmptyInput('alias')}"/>
-                   @if(isEmptyInput('alias')) { <small class="w-full md:w-4/5 text-red-500">نام مستعار فارسی برای دسته بندی وارد کنید</small> }
+                @if(isEmptyInput('alias')) { 
+                    <small class="w-full md:w-4/5 text-red-500">نام مستعار فارسی برای دسته بندی وارد کنید</small> 
+                }
         </div>
         <div class="submit flex justify-center pb-8 pt-11">
             <p-button 

@@ -11,24 +11,23 @@
                 <div class="w-full md:flex md:flex-col md:items-center">
                     <label 
                             class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
-                            [for]="bookData.main[0].for">
-                            {{bookData.main[0].title}}
+                            for="name">
+                            نام
                     </label>
                     <input 
-                            [id]="bookData.main[0].id" 
-                            [type]="bookData.main[0].type || bookData.public.type" 
-                            [class]="bookData.public.class"
-                            [ngClass]="[bookData.main[0].ngClass]" 
-                            [placeholder]="bookData.main[0].placeholder"
-                            [formControlName]="bookData.main[0].formControlName"
+                            id="name" 
+                            type="text" 
+                            class="p-inputtext p-inputtext-sm md:p-inputtext-lg w-full md:w-4/5 md:block m-1"
+                            placeholder="صحیح بخاری"
+                            formControlName="name"
                     />
-                    @if(isEmptyInput(bookData.main[0].formControlName)) { 
-                        <small class="w-full md:w-4/5 text-red-500">{{bookData.main[0].error}}</small> 
+                    @if(isEmptyInput('name')) { 
+                        <small class="w-full md:w-4/5 text-red-500">فیلد نام را پر کنید</small> 
                     }
                 </div>
                 <div 
                     class="w-full md:flex md:flex-col md:items-center" 
-                    *ngFor="let main of [bookData.main[1], bookData.main[2]]">
+                    *ngFor="let main of [bookData.main[0], bookData.main[1]]">
                     <label 
                             class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
                             [for]="main.for">
@@ -84,18 +83,20 @@
                 <div class="w-full md:flex md:flex-col md:items-center">
                     <label 
                             class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" 
-                            [for]="bookData.details[0].for">
-                            {{bookData.details[0].title}}
+                            for="category">
+                            دسته بندی
                     </label>
-                    <p-dropdown [options]="[]"
-                                [formControlName]="bookData.details[0].formControlName"
+                    <p-dropdown 
+                                [options]="categories || []"
+                                formControlName="category"
+                                id="category"
                                 optionLabel="name"
                                 [filter]="true"
-                                filterBy="name" 
+                                filterBy="name"
                                 [showClear]="true" 
                                 styleClass="w-full p-inputtext-sm" 
                                 class="w-full md:w-4/5 mt-1" 
-                                [placeholder]="bookData.details[0].placeholder">
+                                placeholder="انتخاب دسته بندی">
                         <ng-template pTemplate="selectedItem" let-selectedOption>
                             <div class="flex align-items-center gap-2">
                                 <div>{{ selectedOption.name }}</div>
@@ -107,13 +108,13 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
-                    @if(isEmptyInput(bookData.details[0].formControlName)) {
-                    <small class="w-full md:w-4/5 text-red-500">{{bookData.details[0].error}}</small>
+                    @if(isEmptyInput('category')) {
+                    <small class="w-full md:w-4/5 text-red-500">فیلد دسته بندی را انتخاب کنید</small>
                     }
                 </div>
                 <div 
                     class="md:flex md:flex-col md:items-center" 
-                    *ngFor="let details of [bookData.details[1], bookData.details[2], bookData.details[3]]">
+                    *ngFor="let details of [bookData.details[0], bookData.details[1], bookData.details[2]]">
                     <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
                         [for]="details.for">{{details.title}}</label>
                     <input 

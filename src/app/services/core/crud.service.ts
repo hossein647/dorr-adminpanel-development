@@ -1,63 +1,61 @@
 import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, shareReplay, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+// import { Observable,T>catchError, shareReplay, throwError } from 'rxj';
 import { ICrud } from 'src/app/shared/interfaces/i-crud.interface';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CrudService<T> implements ICrud<T> {
 
   baseApi: string = environment.url;
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {}
 
 
-  create(item: T, endPoint: string, options?: any): Observable<HttpEvent<T>> {
-    return this.http.post<T>(`${this.baseApi}/${endPoint}`, item, options)
+  create<T>(item: T, endPoint: string, withCredentials: boolean): Observable<T> {
+    return this.http.post<T>(`${this.baseApi}/${endPoint}`, item, { withCredentials })
       .pipe(
-        shareReplay(),
         catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  update(id: string, item: T, endPoint: string, options?: any): Observable<HttpEvent<T>> {
-    return this.http.put<T>(`${this.baseApi}/${endPoint}/${id}`, item, options)
+  update<T>(id: string, item: T, endPoint: string, withCredentials: boolean): Observable<T> {
+    return this.http.put<T>(`${this.baseApi}/${endPoint}/${id}`, item, { withCredentials })
       .pipe(
-        shareReplay(),
         catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  delete(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>> {
-    return this.http.delete<T>(`${this.baseApi}/${endPoint}/${id}`, options)
+  delete<T>(id: string, endPoint: string, withCredentials: boolean): Observable<T> {
+    return this.http.delete<T>(`${this.baseApi}/${endPoint}/${id}`, { withCredentials })
       .pipe(
-        shareReplay(),
         catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  get(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>> {
-    return this.http.get<T>(`${this.baseApi}/${endPoint}/${id}`, options)
+  get<T>(id: string, endPoint: string, withCredentials: boolean): Observable<T> {
+    return this.http.get<T>(`${this.baseApi}/${endPoint}/${id}`, { withCredentials })
       .pipe(
-        shareReplay(),
         catchError((err) => throwError(() => err))
       )
   }
 
 
 
-  getAll(endPoint: string, options?: any): Observable<HttpEvent<T[]>> {
-    return this.http.get<T[]>(`${this.baseApi}/${endPoint}`, options)
+  getAll<T>(endPoint: string, withCredentials: boolean): Observable<T[]> {
+    return this.http.get<T[]>(`${this.baseApi}/${endPoint}`, { withCredentials })
       .pipe(
-        shareReplay(),
         catchError((err) => throwError(() => err))
       )
   }

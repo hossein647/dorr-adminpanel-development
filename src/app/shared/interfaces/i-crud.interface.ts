@@ -1,15 +1,15 @@
 import { HttpEvent } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-export interface ICrud<T> {
+export abstract class ICrud<T> {
 
-    create(item: T, endPoint: string, options?: any): Observable<HttpEvent<T>>;
+    abstract create<T>(item: T, endPoint: string, withCredentials: boolean): Observable<T>;
 
-    update(id: string, item: T, endPoint: string, options?: any): Observable<HttpEvent<T>>;
+    abstract update<T>(id: string, item: T, endPoint: string, withCredentials: boolean): Observable<T>;
 
-    delete(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>>;
+    abstract delete<T>(id: string, endPoint: string, withCredentials: boolean): Observable<T>;
 
-    get(id: string, endPoint: string, options?: any): Observable<HttpEvent<T>>;
+    abstract get<T>(id: string, endPoint: string, withCredentials: boolean): Observable<T>;
 
-    getAll(endPoint: string, options?: any): Observable<HttpEvent<T[]>>;
+    abstract getAll<T>(endPoint: string, withCredentials: boolean): Observable<T[]>;
 }
