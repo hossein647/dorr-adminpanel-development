@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -7,12 +7,15 @@ import { TabViewModule } from 'primeng/tabview';
 import { IData } from 'src/app/shared/interfaces/i-data.interface';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { CrudService } from 'src/app/services/core/crud.service';
+import { Author, Book } from 'src/app/shared/interfaces';
 
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule, NgFor, NgIf, NgClass, ButtonModule, TabViewModule, DropdownModule, SelectButtonModule],
+  imports: [ReactiveFormsModule, InputTextModule, CommonModule, ButtonModule, TabViewModule, DropdownModule, SelectButtonModule],
+  providers: [CrudService],
   templateUrl: './create-book.component.html',
   styleUrl: './create-book.component.scss'
 })
@@ -22,18 +25,7 @@ export class CreateBookComponent {
   bookData: IData;
   loading: boolean = false;
   selectedCountry: string | undefined;
-  countries = [
-    { name: 'Australia', code: 'AU' },
-    { name: 'Brazil', code: 'BR' },
-    { name: 'China', code: 'CN' },
-    { name: 'Egypt', code: 'EG' },
-    { name: 'France', code: 'FR' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'India', code: 'IN' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Spain', code: 'ES' },
-    { name: 'United States', code: 'US' }
-];
+  authors: Author[] = [];
 
 
 
@@ -41,11 +33,13 @@ export class CreateBookComponent {
 
   constructor(
     private foromBuilder: FormBuilder,
+    private crudService: CrudService<Book>,
   ) { }
 
   ngOnInit(): void {
     this.initilizeForm();
     this.bookData = this.setBookData();
+    this.getAuthors();
   }
 
 
@@ -65,6 +59,9 @@ export class CreateBookComponent {
       imageUrl: ['', Validators.required],
     })
   }
+
+
+
   submitBook(bookForm: FormGroup) {
     console.log(bookForm.value);
     this.loading = true;
@@ -78,6 +75,20 @@ export class CreateBookComponent {
   }
 
   
+
+  getAuthors() {
+    this.crudService.getAll('author/getAll', { withCredentials: true }).subscribe({
+      next: (res: any) => {
+        this.authors = res.data;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+
   setBookData(): IData {
     return {
       public: {
