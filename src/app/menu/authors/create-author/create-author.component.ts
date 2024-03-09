@@ -16,7 +16,7 @@ import { ToastComponent } from 'src/app/shared/components/toast/toast.component'
   selector: 'app-create-author',
   standalone: true,
   imports: [ReactiveFormsModule, NgClass, MultiSelectModule, ButtonModule, SelectButtonModule, InputTextareaModule, ToastComponent],
-  providers: [CrudService, MessageService],
+  providers: [MessageService],
   templateUrl: './create-author.component.html',
   styleUrl: './create-author.component.scss'
 })
@@ -60,12 +60,14 @@ export class CreateAuthorComponent implements OnInit {
     })
   }
 
+
+  
   submitAuthor(authorForm: FormGroup) {
     if (authorForm.invalid) return authorForm.markAllAsTouched();
     this.loading = true;
     const endPoint = 'author/create';
     console.log(authorForm.value);
-    this.crudService.create(authorForm.value, endPoint, { withCredentials: true }).subscribe({
+    this.crudService.create(authorForm.value, endPoint, true).subscribe({
       next: (res: any) => {
         this.loading = false;
         this.authorForm.reset();
