@@ -49,7 +49,7 @@ export class CreateCategoryComponent implements OnInit {
     const endPoint = 'category/create'
     this.loading = true;
 
-    this.crudService.create(categoryForm.value, endPoint).subscribe({
+    this.crudService.create(categoryForm.value, endPoint, true).subscribe({
       next: (res: any) => {
         this.loading = false;
         this.messageService.add({ severity: 'success', summary: res.message})
