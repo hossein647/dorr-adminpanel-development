@@ -21,8 +21,7 @@ export class ReadBookComponent {
   createRouter: string = 'create';
   editRouter: string = '';
 
-  books: CustomBook[];
-
+  books: CustomBook[] = [];
   cols: Column[];
 
   ngOnInit() {
@@ -32,21 +31,6 @@ export class ReadBookComponent {
       { field: 'author', header: 'نویسنده' },
       { field: 'category', header: 'دسته بندی' },
       { field: 'publisher', header: 'انتشارات' }
-    ]
-
-    this.books = [
-      {
-        name: 'فارسی',
-        author: 'سعدی',
-        category: 'ادبیات',
-        publisher: 'بیان'
-      },
-      {
-        name: 'ریاضی',
-        author: 'حوارزمی',
-        category: 'ریاضیات',
-        publisher: 'خودم'
-      }
     ]
   }
 }
