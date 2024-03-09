@@ -21,7 +21,7 @@ export class ReadCategoriesComponent implements OnInit {
   createRouter: string = 'create';
   editRouter  : string = '';
 
-  categories: CustomCategory[];
+  categories: CustomCategory[] = [];
   cols: Column[];
 
 
@@ -29,17 +29,6 @@ export class ReadCategoriesComponent implements OnInit {
     this.cols = [
       { field: 'name', header: 'نام' },
       { field: 'alias', header: 'مستعار' }
-    ]
-
-    this.categories = [
-      {
-        name: 'فارسی',
-        alias: 'سعدی'
-      },
-      {
-        name: 'ریاضی',
-        alias: 'حوارزمی'
-      },
     ]
   }
     
