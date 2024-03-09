@@ -18,7 +18,7 @@ export class ReadAuthorsComponent {
   createRouter: string = 'create';
   editRouter: string = '';
 
-  authors: CustomAuthor[];
+  authors: CustomAuthor[] = [];
 
   cols: Column[];
 
@@ -27,17 +27,6 @@ export class ReadAuthorsComponent {
       { field: 'index', header: 'ردیف' },
       { field: 'name', header: 'نام نویسنده' },
       { field: 'profession', header: 'تخصص' }
-    ]
-
-    this.authors = [
-      {
-        name: 'حسین',
-        profession: "Author"
-      },
-      {
-        name: 'امید',
-        profession: "Author"
-      }
     ]
   }
 }
