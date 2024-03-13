@@ -36,7 +36,8 @@
                     <p-dropdown 
                                 [options]="authors"
                                 [formControlName]="main.formControlName"
-                                optionLabel="name" 
+                                optionLabel="name"
+                                [id]="main.id"
                                 [filter]="true" 
                                 filterBy="name"
                                 [showClear]="true"
@@ -114,7 +115,7 @@
                 </div>
                 <div 
                     class="md:flex md:flex-col md:items-center" 
-                    *ngFor="let details of [bookData.details[0], bookData.details[1], bookData.details[2]]">
+                    *ngFor="let details of [bookData.details[0], bookData.details[1]]">
                     <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400"
                         [for]="details.for">{{details.title}}</label>
                     <input 
@@ -127,7 +128,31 @@
                     @if(isEmptyInput(details.formControlName)) {
                     <small class="w-full md:w-4/5 text-red-500">{{details.error}}</small>
                     }
-        </div>
+                </div>
+                <div 
+                    class="md:flex md:flex-col md:items-center">
+                    <label class="inline-block mr-1 mt-4 md:w-4/5 text-base text-gray-400" for="imageUrl">
+                        تصویر
+                    </label>
+                    <p-button 
+                        [label]="labelSelectImage"
+                        class="p-button-sm md:p-button-lg w-full md:w-4/5 md:block m-1"
+                        styleClass="w-full bg-transparent border border-[#ccc] text-[#0000006e]"
+                        (click)="imageFile.click()">
+                            <input 
+                                    id="imageUrl" 
+                                    type="file"
+                                    [class]="bookData.public.class"
+                                    ngClass="!hidden"
+                                    placeholder="انتخاب تصویر"
+                                    #imageFile
+                                    (change)="onSelectImage($event)"/>
+                    </p-button>
+                            
+                    @if(isEmptyInput('imageUrl')) {
+                        <small class="w-full md:w-4/5 text-red-500">فیلد تصویر را پر کنید</small>
+                    }
+                </div>
             </div>
             <div class="col">
                 <div class="title mx-1 mb-2 mt-6 pl-3 md:flex md:justify-center">
@@ -161,7 +186,9 @@
                     pButton class="w-60" 
                     label="Submit" 
                     [loading]="loading" 
-                    type="submit">
+                    type="submit"
+                    class="p-button-success"
+                    [ngClass]="{}">
             </button>
         </div>
     </form>
