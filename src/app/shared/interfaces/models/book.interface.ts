@@ -5,8 +5,8 @@ export interface Book {
     translator: string;
     category: string;
     language: string;
-    volume: number;
-    page: number;
+    volumes: number;
+    pages: number;
     publisher: string;
     publish_age: number;
     publish_n: number;
