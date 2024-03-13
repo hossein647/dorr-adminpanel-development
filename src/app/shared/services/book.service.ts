@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ICrud } from '../interfaces';
+import { Book, ICrud } from '../interfaces';
 import { Observable } from 'rxjs';
 import { CrudService } from 'src/app/services/core/crud.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookService<Book> implements ICrud<Book> {
+
+export class BookService implements ICrud<Book> {
 
   constructor(
     private crudService: CrudService<Book>

@@ -1,0 +1,26 @@
+<p-table [columns]="cols" [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5" [selectionPageOnly]="true">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            @for (col of columns; track col.name) {
+                <th class="text-center">
+                    {{ col.header }}
+                </th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex" let-product>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="product"></p-tableCheckbox>
+            </td>
+            @for (col of columns; track $index;) {
+                <td class="text-center">
+                    {{ col.field === 'index' ? rowIndex + 1 : rowData[col.field] }} 
+                </td>
+            }
+        </tr>
+    </ng-template>
+</p-table>

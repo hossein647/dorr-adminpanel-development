@@ -12,3 +12,5 @@ export interface Book {
     publish_n: number;
     imageUrl: string;
 }
+
+export type CustomBook = Partial<Book>

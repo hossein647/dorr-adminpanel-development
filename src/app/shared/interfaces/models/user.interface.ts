@@ -1,6 +1,8 @@
-
-export class User {
+export interface User {
     email: string;
     password: string;
     role?: string;
+    badHistory: number;
 }
+
+export type CustomUser = Partial<User>

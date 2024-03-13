@@ -6,3 +6,5 @@ export interface Author {
     profession: 'Author' | 'Translator' | 'Both';
     description: string;
 }
+
+export type CustomAuthor = Partial<Author>

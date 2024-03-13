@@ -4,4 +4,9 @@
                     [createRouter]="createRouter"
                     [editRouter]="editRouter">
 </app-horizontal-menu>
-<div class="read-authors wrapper-card"></div>
+<div class="read-authors wrapper-card">
+    <app-my-table 
+                [cols]="cols" 
+                [data]="authors">
+    </app-my-table>
+</div>

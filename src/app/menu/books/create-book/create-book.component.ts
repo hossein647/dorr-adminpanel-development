@@ -38,7 +38,7 @@ export class CreateBookComponent {
 
   constructor(
     private foromBuilder: FormBuilder,
-    private bookService: BookService<Book>,
+    private bookService: BookService,
     private categoryService: CategoryService<Category>,
     private messageService: MessageService,
   ) { }
