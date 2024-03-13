@@ -37,4 +37,10 @@ export class BookService<Book> implements ICrud<Book> {
     return this.crudService.getAll(endPoint, withCredentials);
   }
 
+
+  imageUpload(image: File, endPoint: string, withCredentials: boolean) {
+    const formData = new FormData();
+    formData.append('book-image', image);
+    return this.crudService.create(formData, endPoint, withCredentials)
+  }
 }
