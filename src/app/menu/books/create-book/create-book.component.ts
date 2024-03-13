@@ -11,13 +11,14 @@ import { Author, Book, Category } from 'src/app/shared/interfaces';
 import { BookService } from 'src/app/shared/services/book.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
   imports: [ReactiveFormsModule, InputTextModule, CommonModule, ButtonModule, TabViewModule, DropdownModule, SelectButtonModule],
-  providers: [BookService],
+  providers: [BookService, MessageService],
   templateUrl: './create-book.component.html',
   styleUrl: './create-book.component.scss'
 })
@@ -29,6 +30,8 @@ export class CreateBookComponent {
   selectedCountry: string | undefined;
   authors: Author[] = [];
   categories: Category[] = [];
+  imageFile: File;
+  labelSelectImage: string = 'انتخاب تصویر';
 
 
 
@@ -37,6 +40,7 @@ export class CreateBookComponent {
     private foromBuilder: FormBuilder,
     private bookService: BookService<Book>,
     private categoryService: CategoryService<Category>,
+    private messageService: MessageService,
   ) { }
 
 
@@ -56,20 +60,66 @@ export class CreateBookComponent {
       translator: [this.selectedCountry, Validators.required],
       category: [this.selectedCountry, Validators.required],
       language: [this.selectedCountry, Validators.required],
-      volume: [null, Validators.required],
-      page: [null, Validators.required],
+      volumes: [null, Validators.required],
+      pages: [null, Validators.required],
       publisher: ['', Validators.required],
       publish_age: [null, Validators.required],
       publish_n: [null, Validators.required],
-      imageUrl: ['', Validators.required],
+      imageUrl: [null, Validators.required],
     })
   }
 
 
 
+  prepareBookForm(imageUrl: string) {
+    const { author, category, translator, ...result } = this.bookForm.value;
+    this.bookForm.patchValue({
+      ...result,
+      author: author.id,
+      category: category.id,
+      translator: translator.id,
+      pages: +this.bookForm.value.pages,
+      publish_age: +this.bookForm.value.publish_age,
+      volumes: +this.bookForm.value.volumes,
+      imageUrl
+    });
+    return this.bookForm.value;
+  }
+
+
+
   submitBook(bookForm: FormGroup) {
-    console.log(bookForm.value);
+    if (bookForm.invalid) return bookForm.markAllAsTouched();
+    
     this.loading = true;
+
+    const imageUploadEndPoint = 'book/upload-image';
+    const createBookEndPoint  = 'book/create';
+    
+    this.bookService.imageUpload(this.imageFile, imageUploadEndPoint, true).subscribe({
+      next: (res: any) => {
+        if (res.statusCode === 200) {
+          const bookForm = this.prepareBookForm(res.imageUrl);
+          
+          this.bookService.create(bookForm, createBookEndPoint, true).subscribe({
+            next: (res: any) => {
+              this.loading = false;
+              this.messageService.add({ severity: 'success', summary: res.message });
+              this.bookForm.reset();
+            },
+            error: (err: any) => {
+              this.loading = false;
+              this.messageService.add({ severity: 'error', summary: err.error.message });
+            }
+          })
+        }
+        
+      },
+      error: (err: any) => {
+        console.log('errr image upload : ', err);
+        
+      }
+    })
   }
 
 
@@ -81,24 +131,30 @@ export class CreateBookComponent {
 
   
 
-  async getAuthors(): Promise<any> {
-    const response: any = await (lastValueFrom(this.bookService.getAll('author/getAll', false)));
+  async getAuthors() {
+    const request = this.bookService.getAll<Author>('author/getAll', false);
+    const response: any = await lastValueFrom(request);
     this.authors = response.data;
-    
   }
 
 
 
   async getCategories() {
     const request = this.categoryService.getAll('category/getAll', false);
-    const response: any = await (firstValueFrom(request))
-    console.log(response);
-    
+    const response: any = await (firstValueFrom(request));    
     this.categories = response.data;
   }
 
   
+  onSelectImage(event: any) {        
+    if (event.target.files.length) {
+      this.imageFile = event.target.files[0];
+      this.bookForm.patchValue({ imageUrl: this.imageFile.name });
+      this.labelSelectImage = this.imageFile.name;
+    }
+  }
 
+  
   setBookData(): IData {
     return {
       public: {
@@ -131,22 +187,22 @@ export class CreateBookComponent {
       ],
       details: [
         {
-          formControlName: 'page',
+          formControlName: 'pages',
           placeholder: '600',
           class: '',
           ngClass: '',
-          for: 'page',
-          id: 'page',
+          for: 'pages',
+          id: 'pages',
           title: 'صفحات :',
           error: 'فیلد صفحات را پر کنید.',
         },
         {
-          formControlName: 'volume',
+          formControlName: 'volumes',
           placeholder: '4',
           class: '',
           ngClass: '',
-          for: 'volume',
-          id: 'volume',
+          for: 'volumes',
+          id: 'volumes',
           title: 'تعداد جلد :',
           error: 'فیلد تعداد جلد را پر کنید.',
         },
